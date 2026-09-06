@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sayana Chand K | Data Scientist & Machine Learning Portfolio</title>
+  <meta name="description" content="Portfolio of Sayana Chand K, Data Scientist specializing in Predictive Modeling, Deep Learning, NLP, and Automated MLOps Pipelines.">
+  <meta name="keywords" content="Sayana Chand K, Data Scientist, Machine Learning, Deep Learning, NLP, Power BI, Python, Cognizant, Bengaluru">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sayana Chand K - Data Scientist Portfolio">
+  <meta property="og:description" content="Investment Portfolio Dashboard style showcase of Machine Learning, Deep Learning, and NLP models.">
+  <meta property="og:type" content="website">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom Theme CSS -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body class="bg-[#07090e] text-slate-100 antialiased selection:bg-emerald-500/30 selection:text-emerald-300">
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="mobileBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 hidden lg:hidden"></div>
+
+  <!-- Left Sidebar Navigation -->
+  <aside id="appSidebar" class="app-sidebar">
+    <!-- Brand / Header -->
+    <div class="p-6 pb-4 border-b border-white/5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 p-[1px] shadow-lg shadow-emerald-500/20">
+          <div class="w-full h-full bg-[#0d1322] rounded-[11px] flex items-center justify-center font-mono font-bold text-emerald-400 text-sm">
+            SCK
+          </div>
+        </div>
+        <div>
+          <h1 class="text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
+            Sayana Chand K
+          </h1>
+          <span class="text-[11px] text-emerald-400 font-mono flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            Data Scientist
+          </span>
+        </div>
+      </div>
+      <button id="closeSidebarBtn" class="lg:hidden text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Live Status Widget -->
+    <div class="px-6 py-3">
+      <div class="market-ticker w-full justify-center">
+        <span class="pulse-dot"></span>
+        <span id="statusBadgeText" class="truncate text-[11px]">Active • Open to Roles</span>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="flex-1 px-4 py-2 space-y-1 overflow-y-auto">
+      <a href="#overview" class="nav-link active">
+        <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+        <span>Overview</span>
+      </a>
+      <a href="#performance" class="nav-link">
+        <i data-lucide="trending-up" class="w-4 h-4"></i>
+        <span>Performance Yield</span>
+      </a>
+      <a href="#projects" class="nav-link">
+        <i data-lucide="briefcase" class="w-4 h-4"></i>
+        <span>Holdings (Projects)</span>
+      </a>
+      <a href="#experience" class="nav-link">
+        <i data-lucide="building-2" class="w-4 h-4"></i>
+        <span>Experience</span>
+      </a>
+      <a href="#skills" class="nav-link">
+        <i data-lucide="cpu" class="w-4 h-4"></i>
+        <span>Skills Matrix</span>
+      </a>
+      <a href="#education" class="nav-link">
+        <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+        <span>Education & Certs</span>
+      </a>
+      <a href="#contact" class="nav-link">
+        <i data-lucide="mail" class="w-4 h-4"></i>
+        <span>Connect & Hire</span>
+      </a>
+    </nav>
+
+    <!-- Sidebar Bottom / User Contact Card -->
+    <div class="p-4 border-t border-white/5 space-y-3">
+      <div class="bg-white/[0.03] border border-white/5 rounded-xl p-3.5 text-xs">
+        <div class="text-slate-400 mb-1 flex items-center gap-1.5">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span>Bengaluru, India</span>
+        </div>
+        <a id="userEmailLink" href="mailto:sayanachandk@gmail.com" class="text-slate-300 hover:text-emerald-400 truncate block font-mono text-[11px] transition-colors">
+          sayanachandk@gmail.com
+        </a>
+      </div>
+
+      <div class="space-y-2">
+        <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-primary w-full justify-center text-xs py-2 shadow-emerald-500/20">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span>Download Resume</span>
+        </a>
+        <div class="flex items-center gap-2">
+          <a id="userLinkedinLink" href="https://linkedin.com/in/sayana-chand-k-sck/" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full justify-center text-xs py-2">
+            <i data-lucide="linkedin" class="w-3.5 h-3.5 text-blue-400"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="#contact" class="btn-secondary w-full justify-center text-xs py-2">
+            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+            <span>Contact</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Layout Area -->
+  <div class="main-content">
+
+    <!-- Top Sticky Header -->
+    <header class="app-header">
+      <div class="flex items-center gap-4">
+        <button id="mobileMenuToggle" class="lg:hidden text-slate-400 hover:text-white p-2 rounded-lg bg-white/5">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+        
+        <!-- Live Market Style Status Indicator -->
+        <div class="hidden sm:flex items-center gap-2.5 bg-slate-900/60 border border-white/5 rounded-full px-3 py-1 text-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-mono text-slate-300 text-[11px]">COGNIZANT_ML // PIPELINES: OPTIMAL</span>
+        </div>
+      </div>
+
+      <!-- Header Right: Search & Actions -->
+      <div class="flex items-center gap-3">
+        <div class="relative hidden md:block">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+          <input type="text" id="globalSearchInput" placeholder="Search models, tech, skills..." class="search-box">
+        </div>
+
+        <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-primary text-xs py-2 px-3.5 shadow-emerald-500/20">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span>Download CV</span>
+        </a>
+        <a href="mailto:sayanachandk@gmail.com" class="btn-secondary text-xs py-2 px-3.5 hidden sm:inline-flex">
+          <i data-lucide="mail-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span>Get in Touch</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Dashboard Content -->
+    <main class="flex-1 p-4 md:p-8 space-y-8 max-w-7xl mx-auto w-full">
+
+      <!-- SECTION: Hero & Overview -->
+      <section id="overview" class="space-y-6">
+        <!-- Hero Banner Card -->
+        <div class="dash-card p-6 md:p-8 relative overflow-hidden bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-emerald-950/20 border-white/10">
+          <div class="absolute -right-16 -top-16 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -left-16 -bottom-16 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="relative z-10 max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-4">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>Professional Data Science Portfolio • Investment Dashboard UI</span>
+            </div>
+            
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+              Predictive Modeling, Advanced ML & Real-World Decision Intelligence
+            </h2>
+            
+            <p id="heroSummary" class="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+              Data Scientist experienced in architecting end-to-end machine learning workflows, healthcare NLP classification, and automated pipelines. Leveraging multi-dimensional datasets to deliver measurable impact.
+            </p>
+
+            <!-- Quick Meta Tags -->
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <div class="flex items-center gap-2 bg-slate-800/80 border border-white/5 rounded-lg px-3 py-1.5 text-xs text-slate-300">
+                <i data-lucide="building" class="w-3.5 h-3.5 text-cyan-400"></i>
+                <span>Cognizant Technological Solutions</span>
+              </div>
+              <div class="flex items-center gap-2 bg-slate-800/80 border border-white/5 rounded-lg px-3 py-1.5 text-xs text-slate-300">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Bengaluru, India</span>
+              </div>
+              <div class="flex items-center gap-2 bg-slate-800/80 border border-white/5 rounded-lg px-3 py-1.5 text-xs text-slate-300">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5 text-purple-400"></i>
+                <span>3+ Years Enterprise Experience</span>
+              </div>
+            </div>
+
+            <!-- Hero Action CTAs -->
+            <div class="mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center gap-3">
+              <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-primary text-xs py-2.5 px-4 shadow-emerald-500/25">
+                <i data-lucide="download" class="w-4 h-4"></i>
+                <span>Download Resume (PDF)</span>
+              </a>
+              <a href="#projects" class="btn-secondary text-xs py-2.5 px-4">
+                <i data-lucide="briefcase" class="w-4 h-4 text-cyan-400"></i>
+                <span>View Models & Assets</span>
+              </a>
+              <a href="#contact" class="btn-secondary text-xs py-2.5 px-4">
+                <i data-lucide="mail" class="w-4 h-4 text-emerald-400"></i>
+                <span>Contact Sayana</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Metric KPI Grid (fintech asset cards) -->
+        <div id="kpiCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </section>
+
+      <!-- SECTION: Analytics & Allocation -->
+      <section id="performance" class="space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          <!-- Left 2 Cols: Main Performance Area Chart -->
+          <div class="lg:col-span-2 dash-card p-6 flex flex-col justify-between">
+            <div>
+              <!-- Chart Header -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/5">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="text-lg font-bold text-white tracking-tight">Model Yield & Performance Curve</h3>
+                    <span class="badge-gain text-[10px]">Benchmarked</span>
+                  </div>
+                  <p class="text-xs text-slate-400 mt-0.5">Accuracy progression and loss convergence across optimization cycles</p>
+                </div>
+
+                <!-- Metric selector pills -->
+                <div class="flex items-center gap-1 bg-slate-900/90 border border-white/5 p-1 rounded-lg">
+                  <button class="metric-filter-btn text-xs font-semibold px-2.5 py-1 rounded bg-white/10 text-white transition-all" data-metric="accuracy">Accuracy</button>
+                  <button class="metric-filter-btn text-xs font-semibold px-2.5 py-1 rounded text-slate-400 hover:text-white transition-all" data-metric="loss">Loss</button>
+                  <button class="metric-filter-btn text-xs font-semibold px-2.5 py-1 rounded text-slate-400 hover:text-white transition-all" data-metric="all">All</button>
+                </div>
+              </div>
+
+              <!-- Timeframe Selector Toolbar -->
+              <div class="flex items-center justify-between pt-3 pb-1">
+                <span class="text-xs text-slate-400 font-mono">CYCLE TIMEFRAME:</span>
+                <div class="flex items-center gap-1 bg-slate-900/60 border border-white/5 p-1 rounded-lg">
+                  <button class="timeframe-pill" data-timeframe="1M">1M</button>
+                  <button class="timeframe-pill" data-timeframe="6M">6M</button>
+                  <button class="timeframe-pill active" data-timeframe="1Y">1Y</button>
+                  <button class="timeframe-pill" data-timeframe="ALL">ALL</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Canvas Container -->
+            <div class="relative w-full h-64 mt-4">
+              <canvas id="performanceChartCanvas"></canvas>
+            </div>
+
+            <!-- Key Insight Callout Footer -->
+            <div class="mt-4 pt-3 border-t border-white/5 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check-check" class="w-4 h-4 text-emerald-400"></i>
+                <span>Highest model yield: <strong class="text-white">98.2% Accuracy</strong> with SMOTE oversampling & 10+ derived features.</span>
+              </div>
+              <span class="font-mono text-emerald-400">+15.2% Cognizant Uplift</span>
+            </div>
+          </div>
+
+          <!-- Right 1 Col: Technical Domain Asset Allocation -->
+          <div class="dash-card p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-4 border-b border-white/5">
+                <div>
+                  <h3 class="text-lg font-bold text-white tracking-tight">Domain Allocation</h3>
+                  <p class="text-xs text-slate-400 mt-0.5">Core capability weighting</p>
+                </div>
+                <span class="ticker-tag">PORTFOLIO</span>
+              </div>
+
+              <!-- Doughnut Chart Canvas -->
+              <div class="relative w-full h-48 my-4 flex items-center justify-center">
+                <canvas id="allocationChartCanvas"></canvas>
+                <div class="absolute flex flex-col items-center justify-center pointer-events-none">
+                  <span class="text-xs text-slate-400 font-medium">Domain</span>
+                  <span class="text-lg font-bold font-mono-nums text-white">100%</span>
+                  <span class="text-[10px] text-emerald-400">Data Science</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Custom Legend -->
+            <div id="allocationLegend" class="space-y-1 mt-2">
+              <!-- Dynamically populated via charts.js -->
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION: Portfolio Holdings (Flagship Projects Table) -->
+      <section id="projects" class="space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-xl font-bold text-white tracking-tight">Portfolio Holdings (Flagship Projects)</h3>
+              <span class="ticker-tag">5 ASSETS</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">Machine Learning architectures, NLP classifiers, and automated MLOps pipelines</p>
+          </div>
+
+          <div class="text-xs text-slate-400 flex items-center gap-2">
+            <i data-lucide="info" class="w-4 h-4 text-slate-500"></i>
+            <span>Click any project row to inspect detailed metrics</span>
+          </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="dash-card overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="holdings-table">
+              <thead>
+                <tr>
+                  <th>Asset / Model Name</th>
+                  <th>Primary Metric</th>
+                  <th>Data Volume</th>
+                  <th>Status</th>
+                  <th>Tech Stack</th>
+                  <th class="text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="holdingsTableBody">
+                <!-- Dynamically populated via app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Experience / Career Milestones -->
+      <section id="experience" class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-xl font-bold text-white tracking-tight">Professional Experience</h3>
+              <span class="badge-gain">Active Enterprise</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">Proven track record in consulting and high-impact technology delivery</p>
+          </div>
+          <span class="ticker-tag">07/2021 – PRESENT</span>
+        </div>
+
+        <div id="experienceContainer" class="space-y-4">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </section>
+
+      <!-- SECTION: Skills Matrix -->
+      <section id="skills" class="space-y-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 class="text-xl font-bold text-white tracking-tight">Technical Capability Matrix</h3>
+            <span class="badge-cyan">35+ Technologies</span>
+          </div>
+          <p class="text-xs text-slate-400 mt-0.5">Comprehensive breakdown of algorithms, libraries, frameworks, and tools</p>
+        </div>
+
+        <div id="skillsMatrixContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </section>
+
+      <!-- SECTION: Education & Certifications -->
+      <section id="education" class="space-y-6">
+        <div>
+          <h3 class="text-xl font-bold text-white tracking-tight">Credentials & Academic Foundation</h3>
+          <p class="text-xs text-slate-400 mt-0.5">Engineering degree and verified industry certifications</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Left: Education -->
+          <div class="space-y-4">
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+              <i data-lucide="graduation-cap" class="w-4 h-4 text-cyan-400"></i>
+              Education
+            </h4>
+            <div id="educationContainer" class="space-y-3">
+              <!-- Dynamically populated via app.js -->
+            </div>
+          </div>
+
+          <!-- Right: Certifications -->
+          <div class="space-y-4">
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+              <i data-lucide="badge-check" class="w-4 h-4 text-emerald-400"></i>
+              Certifications & Accreditations
+            </h4>
+            <div id="certificationsContainer" class="space-y-3">
+              <!-- Dynamically populated via app.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Connect / Contact -->
+      <section id="contact" class="space-y-4">
+        <div class="dash-card p-6 md:p-10 relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950/40 border-emerald-500/20">
+          <div class="max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-3">
+              <i data-lucide="mail-check" class="w-3.5 h-3.5"></i>
+              <span>Initiate Contact</span>
+            </div>
+            
+            <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Ready to collaborate or discuss an opportunity?
+            </h3>
+            
+            <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+              Whether you are looking for an experienced Data Scientist to elevate predictive models, automate machine learning pipelines, or build actionable analytics dashboards, let's connect.
+            </p>
+
+            <!-- Direct Contact Methods -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-6">
+              <a href="mailto:sayanachandk@gmail.com" class="bg-slate-800/80 border border-white/5 hover:border-emerald-500/40 rounded-xl p-4 transition-all group">
+                <div class="flex items-center gap-2 text-slate-400 group-hover:text-emerald-400 text-xs mb-1">
+                  <i data-lucide="mail" class="w-4 h-4"></i>
+                  <span>Email</span>
+                </div>
+                <div class="text-xs font-mono font-medium text-white truncate">sayanachandk@gmail.com</div>
+              </a>
+
+              <div class="bg-slate-800/80 border border-white/5 rounded-xl p-4">
+                <div class="flex items-center gap-2 text-slate-400 text-xs mb-1">
+                  <i data-lucide="map-pin" class="w-4 h-4 text-cyan-400"></i>
+                  <span>Location</span>
+                </div>
+                <div class="text-xs font-mono font-medium text-white truncate">Bengaluru, India</div>
+              </div>
+
+              <a href="https://linkedin.com/in/sayana-chand-k-sck/" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 border border-white/5 hover:border-blue-500/40 rounded-xl p-4 transition-all group">
+                <div class="flex items-center gap-2 text-slate-400 group-hover:text-blue-400 text-xs mb-1">
+                  <i data-lucide="linkedin" class="w-4 h-4"></i>
+                  <span>LinkedIn</span>
+                </div>
+                <div class="text-xs font-mono font-medium text-white">sayana-chand-k-sck</div>
+              </a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center gap-3">
+              <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-primary">
+                <i data-lucide="download" class="w-4 h-4"></i>
+                <span>Download Resume (PDF)</span>
+              </a>
+              <a href="mailto:sayanachandk@gmail.com?subject=Data Science Role Inquiry" class="btn-secondary">
+                <i data-lucide="send" class="w-4 h-4 text-emerald-400"></i>
+                <span>Send Direct Message</span>
+              </a>
+              <a href="https://linkedin.com/in/sayana-chand-k-sck/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                <i data-lucide="external-link" class="w-4 h-4 text-blue-400"></i>
+                <span>Open LinkedIn Profile</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="pt-8 pb-12 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div>
+          <span>© 2026 Sayana Chand K. Designed with ❤️ by Sayana Chand</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#overview" class="hover:text-slate-300 transition-colors">Back to top</a>
+          <span>•</span>
+          <a href="https://linkedin.com/in/sayana-chand-k-sck/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition-colors">LinkedIn</a>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Interactive Project Details Modal Overlay -->
+  <div id="projectModalOverlay" class="modal-overlay">
+    <div class="modal-container">
+      <div id="modalDetailsContent">
+        <!-- Dynamically injected via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="./assets/data/portfolio-data.js"></script>
+  <script src="./assets/js/charts.js"></script>
+  <script src="./assets/js/app.js"></script>
+</body>
+</html>
