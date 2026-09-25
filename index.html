@@ -9,7 +9,7 @@
   
   <!-- Open Graph -->
   <meta property="og:title" content="Sayana Chand K - Data Scientist Portfolio">
-  <meta property="og:description" content="Investment Portfolio Dashboard style showcase of Machine Learning, Deep Learning, and NLP models.">
+  <meta property="og:description" content="Vision UI Dashboard style showcase of Machine Learning, Deep Learning, and NLP models.">
   <meta property="og:type" content="website">
 
   <!-- Tailwind CSS CDN -->
@@ -21,484 +21,727 @@
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- Custom Theme CSS -->
+  <!-- Custom Vision UI Theme CSS -->
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body class="bg-[#07090e] text-slate-100 antialiased selection:bg-emerald-500/30 selection:text-emerald-300">
+<body class="bg-[#060b26] text-white antialiased selection:bg-[#0075ff]/40 selection:text-white">
 
   <!-- Mobile Sidebar Backdrop -->
-  <div id="mobileBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 hidden lg:hidden"></div>
+  <div id="mobileBackdrop" class="fixed inset-0 bg-black/70 backdrop-blur-md z-30 hidden lg:hidden"></div>
 
-  <!-- Left Sidebar Navigation -->
+  <!-- Left Sidebar Navigation (Vision UI Signature) -->
   <aside id="appSidebar" class="app-sidebar">
-    <!-- Brand / Header -->
-    <div class="p-6 pb-4 border-b border-white/5 flex items-center justify-between">
+    <!-- Brand / Logo Header -->
+    <div class="p-6 pb-5 border-b border-white/10 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 p-[1px] shadow-lg shadow-emerald-500/20">
-          <div class="w-full h-full bg-[#0d1322] rounded-[11px] flex items-center justify-center font-mono font-bold text-emerald-400 text-sm">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#0075ff] to-[#7551ff] p-[1px] shadow-lg shadow-[#0075ff]/25 flex-shrink-0">
+          <div class="w-full h-full bg-[#0a0e2a] rounded-[11px] flex items-center justify-center font-bold text-white text-sm">
             SCK
           </div>
         </div>
         <div>
-          <h1 class="text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
+          <h1 id="brandName" class="text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
             Sayana Chand K
           </h1>
-          <span class="text-[11px] text-emerald-400 font-mono flex items-center gap-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-[11px] text-[#38bdf8] font-mono flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#01b574] animate-pulse"></span>
             Data Scientist
           </span>
         </div>
       </div>
-      <button id="closeSidebarBtn" class="lg:hidden text-slate-400 hover:text-white p-1">
+      <button id="closeSidebarBtn" class="lg:hidden text-slate-400 hover:text-white p-1 rounded-lg">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
 
-    <!-- Live Status Widget -->
-    <div class="px-6 py-3">
-      <div class="market-ticker w-full justify-center">
-        <span class="pulse-dot"></span>
-        <span id="statusBadgeText" class="truncate text-[11px]">Active • Open to Roles</span>
+    <!-- Navigation Menu Items -->
+    <div class="flex-1 px-4 py-4 space-y-6 overflow-y-auto">
+      <div>
+        <div class="text-[10px] font-bold text-[#718096] uppercase tracking-wider px-3 mb-2">
+          Pages / Sections
+        </div>
+        <nav class="space-y-1.5">
+          <a href="#overview" class="nav-item active">
+            <span class="nav-icon">
+              <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+            </span>
+            <span>Dashboard</span>
+          </a>
+          <a href="#projects" class="nav-item">
+            <span class="nav-icon">
+              <i data-lucide="table" class="w-4 h-4"></i>
+            </span>
+            <span>Projects & Models</span>
+          </a>
+          <a href="#performance" class="nav-item">
+            <span class="nav-icon">
+              <i data-lucide="trending-up" class="w-4 h-4"></i>
+            </span>
+            <span>Performance Yield</span>
+          </a>
+          <a href="#experience" class="nav-item">
+            <span class="nav-icon">
+              <i data-lucide="briefcase" class="w-4 h-4"></i>
+            </span>
+            <span>Experience</span>
+          </a>
+          <a href="#skills" class="nav-item">
+            <span class="nav-icon">
+              <i data-lucide="cpu" class="w-4 h-4"></i>
+            </span>
+            <span>Skills Matrix</span>
+          </a>
+          <a href="#education" class="nav-item">
+            <span class="nav-icon">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+            </span>
+            <span>Education & Certs</span>
+          </a>
+        </nav>
+      </div>
+
+      <div>
+        <div class="text-[10px] font-bold text-[#718096] uppercase tracking-wider px-3 mb-2">
+          Account & Connect
+        </div>
+        <nav class="space-y-1.5">
+          <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink nav-item">
+            <span class="nav-icon">
+              <i data-lucide="file-down" class="w-4 h-4"></i>
+            </span>
+            <span>Resume (PDF)</span>
+          </a>
+          <a id="userLinkedinLink" href="https://linkedin.com/in/sayana-chand-k-sck/" target="_blank" rel="noopener noreferrer" class="userLinkedinLink nav-item">
+            <span class="nav-icon">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+            </span>
+            <span>LinkedIn Profile</span>
+          </a>
+          <a href="#contact" class="nav-item">
+            <span class="nav-icon">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+            </span>
+            <span>Contact & Hire</span>
+          </a>
+        </nav>
       </div>
     </div>
 
-    <!-- Navigation Menu -->
-    <nav class="flex-1 px-4 py-2 space-y-1 overflow-y-auto">
-      <a href="#overview" class="nav-link active">
-        <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
-        <span>Overview</span>
-      </a>
-      <a href="#performance" class="nav-link">
-        <i data-lucide="trending-up" class="w-4 h-4"></i>
-        <span>Performance Yield</span>
-      </a>
-      <a href="#projects" class="nav-link">
-        <i data-lucide="briefcase" class="w-4 h-4"></i>
-        <span>Holdings (Projects)</span>
-      </a>
-      <a href="#experience" class="nav-link">
-        <i data-lucide="building-2" class="w-4 h-4"></i>
-        <span>Experience</span>
-      </a>
-      <a href="#skills" class="nav-link">
-        <i data-lucide="cpu" class="w-4 h-4"></i>
-        <span>Skills Matrix</span>
-      </a>
-      <a href="#education" class="nav-link">
-        <i data-lucide="graduation-cap" class="w-4 h-4"></i>
-        <span>Education & Certs</span>
-      </a>
-      <a href="#contact" class="nav-link">
-        <i data-lucide="mail" class="w-4 h-4"></i>
-        <span>Connect & Hire</span>
-      </a>
-    </nav>
-
-    <!-- Sidebar Bottom / User Contact Card -->
-    <div class="p-4 border-t border-white/5 space-y-3">
-      <div class="bg-white/[0.03] border border-white/5 rounded-xl p-3.5 text-xs">
-        <div class="text-slate-400 mb-1 flex items-center gap-1.5">
-          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-500"></i>
-          <span>Bengaluru, India</span>
+    <!-- Sidebar Bottom: Vision UI Signature "Need Help?" Gradient Card -->
+    <div class="p-4 border-t border-white/10">
+      <div class="relative overflow-hidden rounded-2xl p-4 bg-gradient-to-br from-[#0c1445] via-[#10195a] to-[#0a0f33] border border-white/10 shadow-lg">
+        <div class="absolute -right-4 -bottom-4 w-20 h-20 rounded-full bg-[#0075ff]/20 blur-xl pointer-events-none"></div>
+        <div class="w-8 h-8 rounded-lg bg-[#0075ff] flex items-center justify-center text-white mb-2.5 shadow-md shadow-[#0075ff]/40">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
         </div>
-        <a id="userEmailLink" href="mailto:sayanachandk@gmail.com" class="text-slate-300 hover:text-emerald-400 truncate block font-mono text-[11px] transition-colors">
-          sayanachandk@gmail.com
+        <h4 class="text-xs font-bold text-white mb-1">Need a Data Scientist?</h4>
+        <p class="text-[11px] text-[#a0aec0] mb-3 leading-snug">Open to Senior & Full-time Machine Learning roles.</p>
+        <a href="#contact" class="btn-vision-primary w-full justify-center text-xs py-2">
+          <span>CONNECT NOW</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </a>
-      </div>
-
-      <div class="space-y-2">
-        <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-primary w-full justify-center text-xs py-2 shadow-emerald-500/20">
-          <i data-lucide="download" class="w-3.5 h-3.5"></i>
-          <span>Download Resume</span>
-        </a>
-        <div class="flex items-center gap-2">
-          <a id="userLinkedinLink" href="https://linkedin.com/in/sayana-chand-k-sck/" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full justify-center text-xs py-2">
-            <i data-lucide="linkedin" class="w-3.5 h-3.5 text-blue-400"></i>
-            <span>LinkedIn</span>
-          </a>
-          <a href="#contact" class="btn-secondary w-full justify-center text-xs py-2">
-            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
-            <span>Contact</span>
-          </a>
-        </div>
       </div>
     </div>
   </aside>
 
-  <!-- Main Content Layout Area -->
-  <div class="main-content">
+  <!-- Main Application Wrapper -->
+  <div class="main-wrapper">
 
-    <!-- Top Sticky Header -->
+    <!-- Top Sticky Header (Vision UI Navbar) -->
     <header class="app-header">
-      <div class="flex items-center gap-4">
-        <button id="mobileMenuToggle" class="lg:hidden text-slate-400 hover:text-white p-2 rounded-lg bg-white/5">
-          <i data-lucide="menu" class="w-5 h-5"></i>
-        </button>
-        
-        <!-- Live Market Style Status Indicator -->
-        <div class="hidden sm:flex items-center gap-2.5 bg-slate-900/60 border border-white/5 rounded-full px-3 py-1 text-xs">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="font-mono text-slate-300 text-[11px]">COGNIZANT_ML // PIPELINES: OPTIMAL</span>
-        </div>
-      </div>
-
-      <!-- Header Right: Search & Actions -->
-      <div class="flex items-center gap-3">
-        <div class="relative hidden md:block">
-          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
-          <input type="text" id="globalSearchInput" placeholder="Search models, tech, skills..." class="search-box">
+      <div class="flex items-center justify-between gap-4">
+        <!-- Breadcrumb & Page Title -->
+        <div>
+          <div class="text-xs text-[#a0aec0] font-medium flex items-center gap-1.5">
+            <span class="hover:text-white cursor-pointer">Pages</span>
+            <span>/</span>
+            <span class="text-white font-semibold">Dashboard</span>
+          </div>
+          <h2 class="text-lg md:text-xl font-bold text-white tracking-tight mt-0.5">
+            Dashboard
+          </h2>
         </div>
 
-        <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-primary text-xs py-2 px-3.5 shadow-emerald-500/20">
-          <i data-lucide="download" class="w-3.5 h-3.5"></i>
-          <span>Download CV</span>
-        </a>
-        <a href="mailto:sayanachandk@gmail.com" class="btn-secondary text-xs py-2 px-3.5 hidden sm:inline-flex">
-          <i data-lucide="mail-check" class="w-3.5 h-3.5 text-emerald-400"></i>
-          <span>Get in Touch</span>
-        </a>
+        <!-- Right Action Controls -->
+        <div class="flex items-center gap-3">
+          <!-- Search Input -->
+          <div class="relative hidden sm:block">
+            <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#a0aec0]"></i>
+            <input 
+              id="globalSearchInput" 
+              type="text" 
+              placeholder="Type here..." 
+              class="w-44 md:w-56 bg-[#0f1535] border border-white/10 text-white placeholder-[#718096] text-xs rounded-xl pl-9 pr-3.5 py-2 focus:outline-none focus:border-[#0075ff] transition-colors"
+            >
+          </div>
+
+          <!-- Open To Roles Badge -->
+          <div class="hidden md:flex items-center gap-2 bg-[#0a0e2a] border border-white/10 px-3 py-1.5 rounded-xl text-xs font-semibold text-[#01b574]">
+            <span class="w-2 h-2 rounded-full bg-[#01b574] animate-ping"></span>
+            <span id="statusBadgeText" class="truncate max-w-[170px]">Open to Roles</span>
+          </div>
+
+          <!-- Download CV Button -->
+          <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-vision-primary text-xs py-2 px-3.5">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">Resume</span>
+          </a>
+
+          <!-- Social / LinkedIn Icon -->
+          <a href="https://linkedin.com/in/sayana-chand-k-sck/" target="_blank" rel="noopener noreferrer" class="userLinkedinLink p-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4 text-[#38bdf8]"></i>
+          </a>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-colors">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
       </div>
     </header>
 
-    <!-- Main Scrollable Dashboard Content -->
-    <main class="flex-1 p-4 md:p-8 space-y-8 max-w-7xl mx-auto w-full">
+    <!-- Main Dashboard Container -->
+    <main class="flex-1 p-4 md:p-7 space-y-6 max-w-7xl w-full mx-auto">
 
-      <!-- SECTION: Hero & Overview -->
+      <!-- Section: Overview / KPI Cards Row -->
       <section id="overview" class="space-y-6">
-        <!-- Hero Banner Card -->
-        <div class="dash-card p-6 md:p-8 relative overflow-hidden bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-emerald-950/20 border-white/10">
-          <div class="absolute -right-16 -top-16 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div class="absolute -left-16 -bottom-16 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-          <div class="relative z-10 max-w-3xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-4">
-              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-              <span>Professional Data Science Portfolio • Investment Dashboard UI</span>
-            </div>
-            
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-              Predictive Modeling, Advanced ML & Real-World Decision Intelligence
-            </h2>
-            
-            <p id="heroSummary" class="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
-              Data Scientist experienced in architecting end-to-end machine learning workflows, healthcare NLP classification, and automated pipelines. Leveraging multi-dimensional datasets to deliver measurable impact.
-            </p>
-
-            <!-- Quick Meta Tags -->
-            <div class="mt-6 flex flex-wrap items-center gap-3">
-              <div class="flex items-center gap-2 bg-slate-800/80 border border-white/5 rounded-lg px-3 py-1.5 text-xs text-slate-300">
-                <i data-lucide="building" class="w-3.5 h-3.5 text-cyan-400"></i>
-                <span>Cognizant Technological Solutions</span>
-              </div>
-              <div class="flex items-center gap-2 bg-slate-800/80 border border-white/5 rounded-lg px-3 py-1.5 text-xs text-slate-300">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span>Bengaluru, India</span>
-              </div>
-              <div class="flex items-center gap-2 bg-slate-800/80 border border-white/5 rounded-lg px-3 py-1.5 text-xs text-slate-300">
-                <i data-lucide="check-circle" class="w-3.5 h-3.5 text-purple-400"></i>
-                <span>3+ Years Enterprise Experience</span>
-              </div>
-            </div>
-
-            <!-- Hero Action CTAs -->
-            <div class="mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center gap-3">
-              <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-primary text-xs py-2.5 px-4 shadow-emerald-500/25">
-                <i data-lucide="download" class="w-4 h-4"></i>
-                <span>Download Resume (PDF)</span>
-              </a>
-              <a href="#projects" class="btn-secondary text-xs py-2.5 px-4">
-                <i data-lucide="briefcase" class="w-4 h-4 text-cyan-400"></i>
-                <span>View Models & Assets</span>
-              </a>
-              <a href="#contact" class="btn-secondary text-xs py-2.5 px-4">
-                <i data-lucide="mail" class="w-4 h-4 text-emerald-400"></i>
-                <span>Contact Sayana</span>
-              </a>
-            </div>
-          </div>
+        <!-- 4 Top KPI Metric Cards (Vision UI exact match) -->
+        <div id="kpiCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
+          <!-- Dynamically populated by app.js -->
         </div>
 
-        <!-- Top Metric KPI Grid (fintech asset cards) -->
-        <div id="kpiCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <!-- Dynamically populated via app.js -->
+        <!-- Middle Row: Welcome Hero Card + Satisfaction Rate Gauge + Referral Tracking Card -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+          
+          <!-- Hero Card (Vision UI "Welcome Back Mark Johnson" style) -->
+          <div class="lg:col-span-6 vision-card p-6 md:p-8 flex flex-col justify-between relative overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+              <div class="md:col-span-7 space-y-3 z-10">
+                <span class="text-xs font-semibold text-[#a0aec0] uppercase tracking-wider block">Welcome Back,</span>
+                <h3 id="heroName" class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+                  Sayana Chand K
+                </h3>
+                <p id="heroSummary" class="text-xs md:text-sm text-[#cbd5e1] leading-relaxed line-clamp-3">
+                  Data Scientist with proven expertise in predictive modeling, statistical analysis, and machine learning techniques at Cognizant. Specializing in Deep Learning, NLP, and Automated MLOps.
+                </p>
+                <div class="pt-2 flex flex-wrap items-center gap-3">
+                  <a href="#projects" class="text-xs font-bold text-[#0075ff] hover:text-[#38bdf8] flex items-center gap-1.5 transition-colors">
+                    <span>Explore Models & Projects</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </a>
+                  <span class="text-slate-600">•</span>
+                  <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink text-xs font-semibold text-slate-300 hover:text-white transition-colors">
+                    Download CV
+                  </a>
+                </div>
+              </div>
+
+              <!-- Right: Vision UI Signature Translucent Neural Graphic -->
+              <div class="md:col-span-5 flex items-center justify-center relative">
+                <div class="neural-jellyfish-container">
+                  <div class="jellyfish-glow-bg"></div>
+                  <!-- Ethereal Futuristic Neural Organism SVG (Vision UI signature aesthetic) -->
+                  <svg class="jellyfish-svg w-36 h-36 md:w-44 md:h-44" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <radialGradient id="jellyGrad1" cx="50%" cy="40%" r="50%">
+                        <stop offset="0%" stop-color="#c084fc" stop-opacity="0.9" />
+                        <stop offset="60%" stop-color="#7551ff" stop-opacity="0.75" />
+                        <stop offset="100%" stop-color="#0075ff" stop-opacity="0.2" />
+                      </radialGradient>
+                      <radialGradient id="jellyGradInner" cx="50%" cy="30%" r="40%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+                        <stop offset="80%" stop-color="#38bdf8" stop-opacity="0.4" />
+                        <stop offset="100%" stop-color="#0075ff" stop-opacity="0" />
+                      </radialGradient>
+                    </defs>
+                    <!-- Bell / Canopy -->
+                    <path d="M40,95 C40,45 65,25 100,25 C135,25 160,45 160,95 C150,98 135,92 120,95 C105,98 95,92 80,95 C65,98 50,92 40,95 Z" fill="url(#jellyGrad1)" />
+                    <!-- Inner Core Glow -->
+                    <ellipse cx="100" cy="65" rx="35" ry="24" fill="url(#jellyGradInner)" />
+                    <!-- Glowing Ribs / Neural Synapses -->
+                    <path d="M100,30 Q100,75 100,95" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.6" stroke-dasharray="2 3" />
+                    <path d="M80,35 Q75,70 70,95" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.4" />
+                    <path d="M120,35 Q125,70 130,95" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.4" />
+                    <!-- Floating Neural Tentacles -->
+                    <path d="M60,95 Q50,130 65,165 Q75,185 70,195" stroke="#7551ff" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+                    <path d="M80,96 Q90,135 85,160 Q80,180 85,190" stroke="#0075ff" stroke-width="2" stroke-linecap="round" opacity="0.9" />
+                    <path d="M100,96 Q105,140 98,170 Q95,190 102,198" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" opacity="0.95" />
+                    <path d="M120,96 Q110,135 115,165 Q120,185 112,192" stroke="#0075ff" stroke-width="2" stroke-linecap="round" opacity="0.9" />
+                    <path d="M140,95 Q150,130 135,165 Q125,185 130,195" stroke="#7551ff" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+                    <!-- Neural Spark Nodes -->
+                    <circle cx="100" cy="55" r="3" fill="#ffffff" filter="drop-shadow(0 0 4px #ffffff)" />
+                    <circle cx="85" cy="72" r="2.5" fill="#38bdf8" />
+                    <circle cx="115" cy="72" r="2.5" fill="#38bdf8" />
+                    <circle cx="100" cy="85" r="2.5" fill="#c084fc" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Satisfaction Rate Card (Vision UI Semicircle Gauge) -->
+          <div class="lg:col-span-3 vision-card p-6 flex flex-col justify-between text-center relative">
+            <div class="text-left">
+              <h4 class="text-sm font-bold text-white">Satisfaction Rate</h4>
+              <p class="text-xs text-[#a0aec0]">From all validation sets</p>
+            </div>
+
+            <!-- Circular Gauge Visualization -->
+            <div class="relative w-40 h-40 mx-auto my-3 flex items-center justify-center">
+              <svg class="w-full h-full gauge-svg" viewBox="0 0 160 160">
+                <circle class="gauge-bg" cx="80" cy="80" r="68" stroke-width="12" fill="none" />
+                <circle 
+                  id="satisfactionGaugeCircle" 
+                  class="gauge-progress-blue" 
+                  cx="80" 
+                  cy="80" 
+                  r="68" 
+                  stroke-width="12" 
+                  stroke-linecap="round" 
+                  fill="none" 
+                  style="stroke-dasharray: 427; stroke-dashoffset: 427;"
+                />
+              </svg>
+              <!-- Center Icon Badge -->
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <div class="w-10 h-10 rounded-full bg-[#0075ff] flex items-center justify-center text-white shadow-lg shadow-[#0075ff]/50 mb-1">
+                  <i data-lucide="smile" class="w-5 h-5"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="flex items-center justify-between text-[11px] text-[#718096] px-2 font-mono">
+                <span>0%</span>
+                <span class="text-xl font-bold font-mono text-white">95%</span>
+                <span>100%</span>
+              </div>
+              <div class="text-[11px] text-[#a0aec0]">Based on model precision & recall</div>
+            </div>
+          </div>
+
+          <!-- Referral Tracking / Model Safety Card (Vision UI Gauge) -->
+          <div class="lg:col-span-3 vision-card p-6 flex flex-col justify-between relative">
+            <div>
+              <div class="flex items-center justify-between">
+                <h4 class="text-sm font-bold text-white">Model Trust & Safety</h4>
+                <button class="text-[#718096] hover:text-white p-1">
+                  <i data-lucide="more-horizontal" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <p class="text-xs text-[#a0aec0]">Production benchmarks</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 items-center my-2">
+              <!-- Left Stacked Pills -->
+              <div class="space-y-2.5">
+                <div class="bg-[#0f1535] rounded-xl p-2.5 border border-white/5">
+                  <div class="text-[10px] text-[#a0aec0]">Verified Records</div>
+                  <div class="text-sm font-bold font-mono text-white mt-0.5">334.8k+</div>
+                </div>
+                <div class="bg-[#0f1535] rounded-xl p-2.5 border border-white/5">
+                  <div class="text-[10px] text-[#a0aec0]">Data Loss Rate</div>
+                  <div class="text-sm font-bold font-mono text-[#01b574] mt-0.5">0.00%</div>
+                </div>
+              </div>
+
+              <!-- Right Radial Arc Gauge -->
+              <div class="relative w-28 h-28 mx-auto flex items-center justify-center">
+                <svg class="w-full h-full gauge-svg" viewBox="0 0 160 160">
+                  <circle class="gauge-bg" cx="80" cy="80" r="68" stroke-width="12" fill="none" />
+                  <circle 
+                    id="reliabilityGaugeCircle" 
+                    class="gauge-progress-teal" 
+                    cx="80" 
+                    cy="80" 
+                    r="68" 
+                    stroke-width="12" 
+                    stroke-linecap="round" 
+                    fill="none" 
+                    style="stroke-dasharray: 427; stroke-dashoffset: 427;"
+                  />
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                  <span class="text-[10px] text-[#a0aec0] font-medium">Safety</span>
+                  <span class="text-lg font-bold font-mono text-white">9.8</span>
+                  <span class="text-[9px] text-[#718096]">Score</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-[11px] text-[#a0aec0] text-center pt-1 border-t border-white/5">
+              Verified on Enterprise Datasets
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <!-- SECTION: Analytics & Allocation -->
-      <section id="performance" class="space-y-6">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-          <!-- Left 2 Cols: Main Performance Area Chart -->
-          <div class="lg:col-span-2 dash-card p-6 flex flex-col justify-between">
-            <div>
-              <!-- Chart Header -->
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/5">
-                <div>
-                  <div class="flex items-center gap-2">
-                    <h3 class="text-lg font-bold text-white tracking-tight">Model Yield & Performance Curve</h3>
-                    <span class="badge-gain text-[10px]">Benchmarked</span>
-                  </div>
-                  <p class="text-xs text-slate-400 mt-0.5">Accuracy progression and loss convergence across optimization cycles</p>
-                </div>
-
-                <!-- Metric selector pills -->
-                <div class="flex items-center gap-1 bg-slate-900/90 border border-white/5 p-1 rounded-lg">
-                  <button class="metric-filter-btn text-xs font-semibold px-2.5 py-1 rounded bg-white/10 text-white transition-all" data-metric="accuracy">Accuracy</button>
-                  <button class="metric-filter-btn text-xs font-semibold px-2.5 py-1 rounded text-slate-400 hover:text-white transition-all" data-metric="loss">Loss</button>
-                  <button class="metric-filter-btn text-xs font-semibold px-2.5 py-1 rounded text-slate-400 hover:text-white transition-all" data-metric="all">All</button>
+      <!-- Section: Performance Overview Area Chart + Throughput Bar Chart -->
+      <section id="performance" class="space-y-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+          
+          <!-- Left: Model Performance Area Chart (Vision UI Sales Overview match) -->
+          <div class="lg:col-span-7 vision-card p-6 flex flex-col justify-between">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+              <div>
+                <h3 class="text-base font-bold text-white tracking-tight">
+                  Model Performance Overview
+                </h3>
+                <div class="flex items-center gap-1.5 text-xs text-[#01b574] font-semibold mt-0.5">
+                  <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                  <span>(+15%) more accuracy across production iterations</span>
                 </div>
               </div>
 
-              <!-- Timeframe Selector Toolbar -->
-              <div class="flex items-center justify-between pt-3 pb-1">
-                <span class="text-xs text-slate-400 font-mono">CYCLE TIMEFRAME:</span>
-                <div class="flex items-center gap-1 bg-slate-900/60 border border-white/5 p-1 rounded-lg">
-                  <button class="timeframe-pill" data-timeframe="1M">1M</button>
-                  <button class="timeframe-pill" data-timeframe="6M">6M</button>
-                  <button class="timeframe-pill active" data-timeframe="1Y">1Y</button>
-                  <button class="timeframe-pill" data-timeframe="ALL">ALL</button>
-                </div>
+              <!-- Timeframe Switcher Tabs -->
+              <div class="flex items-center gap-1.5 bg-[#0f1535] p-1 rounded-xl border border-white/5 self-start sm:self-auto">
+                <button data-tf="1M" class="timeframe-btn btn-pill-filter">1M</button>
+                <button data-tf="6M" class="timeframe-btn btn-pill-filter">6M</button>
+                <button data-tf="1Y" class="timeframe-btn btn-pill-filter active">1Y</button>
+                <button data-tf="ALL" class="timeframe-btn btn-pill-filter">ALL</button>
               </div>
             </div>
 
             <!-- Canvas Container -->
-            <div class="relative w-full h-64 mt-4">
+            <div class="relative w-full h-72">
               <canvas id="performanceChartCanvas"></canvas>
-            </div>
-
-            <!-- Key Insight Callout Footer -->
-            <div class="mt-4 pt-3 border-t border-white/5 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
-              <div class="flex items-center gap-2">
-                <i data-lucide="check-check" class="w-4 h-4 text-emerald-400"></i>
-                <span>Highest model yield: <strong class="text-white">98.2% Accuracy</strong> with SMOTE oversampling & 10+ derived features.</span>
-              </div>
-              <span class="font-mono text-emerald-400">+15.2% Cognizant Uplift</span>
             </div>
           </div>
 
-          <!-- Right 1 Col: Technical Domain Asset Allocation -->
-          <div class="dash-card p-6 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between pb-4 border-b border-white/5">
-                <div>
-                  <h3 class="text-lg font-bold text-white tracking-tight">Domain Allocation</h3>
-                  <p class="text-xs text-slate-400 mt-0.5">Core capability weighting</p>
-                </div>
-                <span class="ticker-tag">PORTFOLIO</span>
-              </div>
-
-              <!-- Doughnut Chart Canvas -->
-              <div class="relative w-full h-48 my-4 flex items-center justify-center">
-                <canvas id="allocationChartCanvas"></canvas>
-                <div class="absolute flex flex-col items-center justify-center pointer-events-none">
-                  <span class="text-xs text-slate-400 font-medium">Domain</span>
-                  <span class="text-lg font-bold font-mono-nums text-white">100%</span>
-                  <span class="text-[10px] text-emerald-400">Data Science</span>
-                </div>
+          <!-- Right: Inference & Throughput Bar Chart (Vision UI Active User match) -->
+          <div class="lg:col-span-5 vision-card p-6 flex flex-col justify-between">
+            <div class="mb-4">
+              <h3 class="text-base font-bold text-white tracking-tight">
+                Inference & Data Throughput
+              </h3>
+              <div class="flex items-center gap-1.5 text-xs text-[#01b574] font-semibold mt-0.5">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                <span>High velocity batch & REST streaming</span>
               </div>
             </div>
 
-            <!-- Custom Legend -->
-            <div id="allocationLegend" class="space-y-1 mt-2">
-              <!-- Dynamically populated via charts.js -->
+            <!-- Bar Chart Canvas -->
+            <div class="relative w-full h-44 mb-4">
+              <canvas id="throughputChartCanvas"></canvas>
+            </div>
+
+            <!-- 4 Bottom KPI Mini Pills (Vision UI signature bar bottom) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 border-t border-white/5">
+              <div class="bg-[#0f1535] p-2.5 rounded-xl border border-white/5 text-center">
+                <div class="text-[10px] text-[#a0aec0] flex items-center justify-center gap-1">
+                  <i data-lucide="database" class="w-3 h-3 text-[#0075ff]"></i>
+                  <span>Volume</span>
+                </div>
+                <div class="font-mono font-bold text-white text-xs mt-1">334.8k</div>
+              </div>
+
+              <div class="bg-[#0f1535] p-2.5 rounded-xl border border-white/5 text-center">
+                <div class="text-[10px] text-[#a0aec0] flex items-center justify-center gap-1">
+                  <i data-lucide="gauge" class="w-3 h-3 text-[#01b574]"></i>
+                  <span>Latency</span>
+                </div>
+                <div class="font-mono font-bold text-white text-xs mt-1">&lt; 45ms</div>
+              </div>
+
+              <div class="bg-[#0f1535] p-2.5 rounded-xl border border-white/5 text-center">
+                <div class="text-[10px] text-[#a0aec0] flex items-center justify-center gap-1">
+                  <i data-lucide="check-circle" class="w-3 h-3 text-[#7551ff]"></i>
+                  <span>Accuracy</span>
+                </div>
+                <div class="font-mono font-bold text-white text-xs mt-1">98.0%</div>
+              </div>
+
+              <div class="bg-[#0f1535] p-2.5 rounded-xl border border-white/5 text-center">
+                <div class="text-[10px] text-[#a0aec0] flex items-center justify-center gap-1">
+                  <i data-lucide="server" class="w-3 h-3 text-[#ffb547]"></i>
+                  <span>SLA</span>
+                </div>
+                <div class="font-mono font-bold text-white text-xs mt-1">99.9%</div>
+              </div>
             </div>
           </div>
 
         </div>
       </section>
 
-      <!-- SECTION: Portfolio Holdings (Flagship Projects Table) -->
+      <!-- Section: Projects & Production Models (Vision UI Signature Tables Style) -->
       <section id="projects" class="space-y-4">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <h3 class="text-xl font-bold text-white tracking-tight">Portfolio Holdings (Flagship Projects)</h3>
-              <span class="ticker-tag">5 ASSETS</span>
+        <div class="vision-card p-5 md:p-6 space-y-4">
+          <!-- Table Header & Controls -->
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-4">
+            <div>
+              <h3 class="text-lg font-bold text-white">Projects & Production Deployments</h3>
+              <p class="text-xs text-[#a0aec0]">End-to-end architectures, data pipelines, and deep learning systems</p>
             </div>
-            <p class="text-xs text-slate-400 mt-0.5">Machine Learning architectures, NLP classifiers, and automated MLOps pipelines</p>
+
+            <!-- Filters & Search -->
+            <div class="flex flex-wrap items-center gap-2">
+              <!-- Category Filter Pills -->
+              <div class="flex items-center gap-1 bg-[#0f1535] p-1 rounded-xl border border-white/5 overflow-x-auto max-w-full">
+                <button data-category="all" class="project-filter-btn btn-pill-filter active">All</button>
+                <button data-category="ml" class="project-filter-btn btn-pill-filter">Supervised ML</button>
+                <button data-category="nlp" class="project-filter-btn btn-pill-filter">Clinical NLP</button>
+                <button data-category="mlops" class="project-filter-btn btn-pill-filter">MLOps / API</button>
+                <button data-category="cloud" class="project-filter-btn btn-pill-filter">Cloud Infra</button>
+              </div>
+
+              <!-- Search Input -->
+              <div class="relative w-full sm:w-44">
+                <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#718096]"></i>
+                <input 
+                  id="projectSearchInput" 
+                  type="text" 
+                  placeholder="Filter models..." 
+                  class="w-full bg-[#0f1535] border border-white/10 text-white placeholder-[#718096] text-xs rounded-xl pl-8 pr-3 py-1.5 focus:outline-none focus:border-[#0075ff]"
+                >
+              </div>
+            </div>
           </div>
 
-          <div class="text-xs text-slate-400 flex items-center gap-2">
-            <i data-lucide="info" class="w-4 h-4 text-slate-500"></i>
-            <span>Click any project row to inspect detailed metrics</span>
-          </div>
-        </div>
-
-        <!-- Table Card -->
-        <div class="dash-card overflow-hidden">
-          <div class="overflow-x-auto">
-            <table class="holdings-table">
+          <!-- Desktop Table (Vision UI Table layout) -->
+          <div class="hidden md:block overflow-x-auto">
+            <table class="vision-table">
               <thead>
                 <tr>
-                  <th>Asset / Model Name</th>
-                  <th>Primary Metric</th>
-                  <th>Data Volume</th>
-                  <th>Status</th>
+                  <th>Model / Project Architecture</th>
+                  <th>Core Benchmark</th>
+                  <th>Deployment Status</th>
                   <th>Tech Stack</th>
-                  <th class="text-right">Action</th>
+                  <th class="text-right">Inspection</th>
                 </tr>
               </thead>
-              <tbody id="holdingsTableBody">
-                <!-- Dynamically populated via app.js -->
+              <tbody id="projectsTableBody">
+                <!-- Dynamically populated by app.js -->
               </tbody>
             </table>
           </div>
+
+          <!-- Mobile Cards Container (M-web layout) -->
+          <div id="projectsCardsMobile" class="grid grid-cols-1 gap-3 md:hidden">
+            <!-- Dynamically populated by app.js -->
+          </div>
         </div>
       </section>
 
-      <!-- SECTION: Experience / Career Milestones -->
+      <!-- Section: Career Experience (Cognizant) -->
       <section id="experience" class="space-y-4">
         <div class="flex items-center justify-between">
           <div>
-            <div class="flex items-center gap-2">
-              <h3 class="text-xl font-bold text-white tracking-tight">Professional Experience</h3>
-              <span class="badge-gain">Active Enterprise</span>
-            </div>
-            <p class="text-xs text-slate-400 mt-0.5">Proven track record in consulting and high-impact technology delivery</p>
+            <h3 class="text-lg font-bold text-white">Professional Experience</h3>
+            <p class="text-xs text-[#a0aec0]">Corporate track record and technical deliverables</p>
           </div>
-          <span class="ticker-tag">07/2021 – PRESENT</span>
         </div>
 
         <div id="experienceContainer" class="space-y-4">
-          <!-- Dynamically populated via app.js -->
+          <!-- Dynamically populated by app.js -->
         </div>
       </section>
 
-      <!-- SECTION: Skills Matrix -->
+      <!-- Section: Skills & Competencies Matrix -->
       <section id="skills" class="space-y-4">
-        <div>
-          <div class="flex items-center gap-2">
-            <h3 class="text-xl font-bold text-white tracking-tight">Technical Capability Matrix</h3>
-            <span class="badge-cyan">35+ Technologies</span>
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-white">Technical Skills & Competency Matrix</h3>
+            <p class="text-xs text-[#a0aec0]">Proficiency breakdown across AI, Deep Learning, MLOps and Data Engineering</p>
           </div>
-          <p class="text-xs text-slate-400 mt-0.5">Comprehensive breakdown of algorithms, libraries, frameworks, and tools</p>
         </div>
 
-        <div id="skillsMatrixContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Dynamically populated via app.js -->
+        <div id="skillsMatrixContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Dynamically populated by app.js -->
         </div>
       </section>
 
-      <!-- SECTION: Education & Certifications -->
-      <section id="education" class="space-y-6">
-        <div>
-          <h3 class="text-xl font-bold text-white tracking-tight">Credentials & Academic Foundation</h3>
-          <p class="text-xs text-slate-400 mt-0.5">Engineering degree and verified industry certifications</p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <!-- Left: Education -->
-          <div class="space-y-4">
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-              <i data-lucide="graduation-cap" class="w-4 h-4 text-cyan-400"></i>
-              Education
-            </h4>
+      <!-- Section: Education & Verified Certifications -->
+      <section id="education" class="space-y-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+          
+          <!-- Education Column -->
+          <div class="lg:col-span-6 space-y-4">
+            <div>
+              <h3 class="text-lg font-bold text-white">Academic Education</h3>
+              <p class="text-xs text-[#a0aec0]">Formal engineering foundation and coursework</p>
+            </div>
             <div id="educationContainer" class="space-y-3">
-              <!-- Dynamically populated via app.js -->
+              <!-- Dynamically populated by app.js -->
             </div>
           </div>
 
-          <!-- Right: Certifications -->
-          <div class="space-y-4">
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-              <i data-lucide="badge-check" class="w-4 h-4 text-emerald-400"></i>
-              Certifications & Accreditations
-            </h4>
+          <!-- Certifications Column -->
+          <div class="lg:col-span-6 space-y-4">
+            <div>
+              <h3 class="text-lg font-bold text-white">Verified Certifications</h3>
+              <p class="text-xs text-[#a0aec0]">Professional accreditations in AI, ML, Power BI & Engineering</p>
+            </div>
             <div id="certificationsContainer" class="space-y-3">
-              <!-- Dynamically populated via app.js -->
+              <!-- Dynamically populated by app.js -->
             </div>
           </div>
+
         </div>
       </section>
 
-      <!-- SECTION: Connect / Contact -->
+      <!-- Section: Contact & Hire (Glassmorphic Vision UI Form) -->
       <section id="contact" class="space-y-4">
-        <div class="dash-card p-6 md:p-10 relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950/40 border-emerald-500/20">
-          <div class="max-w-2xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-3">
-              <i data-lucide="mail-check" class="w-3.5 h-3.5"></i>
-              <span>Initiate Contact</span>
+        <div class="vision-card p-6 md:p-8 space-y-6">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-5">
+            <div>
+              <span class="text-xs font-bold text-[#0075ff] uppercase tracking-wider">Get in Touch</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white mt-1">Connect & Discuss Opportunities</h3>
+              <p class="text-xs text-[#a0aec0]">Open to Senior Data Scientist, Machine Learning Engineer, and MLOps roles</p>
             </div>
-            
-            <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Ready to collaborate or discuss an opportunity?
-            </h3>
-            
-            <p class="text-slate-300 text-sm mt-3 leading-relaxed">
-              Whether you are looking for an experienced Data Scientist to elevate predictive models, automate machine learning pipelines, or build actionable analytics dashboards, let's connect.
-            </p>
-
-            <!-- Direct Contact Methods -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-6">
-              <a href="mailto:sayanachandk@gmail.com" class="bg-slate-800/80 border border-white/5 hover:border-emerald-500/40 rounded-xl p-4 transition-all group">
-                <div class="flex items-center gap-2 text-slate-400 group-hover:text-emerald-400 text-xs mb-1">
-                  <i data-lucide="mail" class="w-4 h-4"></i>
-                  <span>Email</span>
-                </div>
-                <div class="text-xs font-mono font-medium text-white truncate">sayanachandk@gmail.com</div>
+            <div class="flex items-center gap-2">
+              <button onclick="copyToClipboard('sayanachandk@gmail.com', 'Email copied to clipboard!')" class="btn-vision-secondary text-xs py-2 px-3">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Copy Email</span>
+              </button>
+              <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-vision-primary text-xs py-2 px-3.5">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                <span>Download CV</span>
               </a>
+            </div>
+          </div>
 
-              <div class="bg-slate-800/80 border border-white/5 rounded-xl p-4">
-                <div class="flex items-center gap-2 text-slate-400 text-xs mb-1">
-                  <i data-lucide="map-pin" class="w-4 h-4 text-cyan-400"></i>
-                  <span>Location</span>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <!-- Contact Info Cards -->
+            <div class="lg:col-span-5 space-y-3">
+              <!-- Email Card -->
+              <div class="bg-[#0f1535] border border-white/5 rounded-2xl p-4 flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-[#0075ff]/20 text-[#0075ff] flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="mail" class="w-5 h-5"></i>
                 </div>
-                <div class="text-xs font-mono font-medium text-white truncate">Bengaluru, India</div>
+                <div class="overflow-hidden">
+                  <div class="text-[11px] text-[#a0aec0]">Direct Email</div>
+                  <a href="mailto:sayanachandk@gmail.com" class="userEmailLink text-white hover:text-[#38bdf8] font-mono text-xs font-semibold truncate block transition-colors">
+                    sayanachandk@gmail.com
+                  </a>
+                </div>
               </div>
 
-              <a href="https://linkedin.com/in/sayana-chand-k-sck/" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 border border-white/5 hover:border-blue-500/40 rounded-xl p-4 transition-all group">
-                <div class="flex items-center gap-2 text-slate-400 group-hover:text-blue-400 text-xs mb-1">
-                  <i data-lucide="linkedin" class="w-4 h-4"></i>
-                  <span>LinkedIn</span>
+              <!-- Location Card -->
+              <div class="bg-[#0f1535] border border-white/5 rounded-2xl p-4 flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-[#01b574]/20 text-[#01b574] flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="map-pin" class="w-5 h-5"></i>
                 </div>
-                <div class="text-xs font-mono font-medium text-white">sayana-chand-k-sck</div>
-              </a>
+                <div>
+                  <div class="text-[11px] text-[#a0aec0]">Current Location</div>
+                  <div id="userLocationText" class="text-white text-xs font-semibold">Bengaluru, Karnataka, India</div>
+                </div>
+              </div>
+
+              <!-- LinkedIn Card -->
+              <div class="bg-[#0f1535] border border-white/5 rounded-2xl p-4 flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-[#7551ff]/20 text-[#7551ff] flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-[11px] text-[#a0aec0]">LinkedIn Network</div>
+                  <a href="https://linkedin.com/in/sayana-chand-k-sck/" target="_blank" rel="noopener noreferrer" class="userLinkedinLink text-white hover:text-[#38bdf8] text-xs font-semibold transition-colors">
+                    linkedin.com/in/sayana-chand-k-sck/
+                  </a>
+                </div>
+              </div>
+
+              <!-- GitHub Profile Card -->
+              <div class="bg-[#0f1535] border border-white/5 rounded-2xl p-4 flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="github" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-[11px] text-[#a0aec0]">GitHub Repositories</div>
+                  <a href="https://github.com/schand-k" target="_blank" rel="noopener noreferrer" class="userGithubLink text-white hover:text-[#38bdf8] text-xs font-semibold transition-colors">
+                    github.com/schand-k
+                  </a>
+                </div>
+              </div>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="flex flex-wrap items-center gap-3">
-              <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-primary">
-                <i data-lucide="download" class="w-4 h-4"></i>
-                <span>Download Resume (PDF)</span>
-              </a>
-              <a href="mailto:sayanachandk@gmail.com?subject=Data Science Role Inquiry" class="btn-secondary">
-                <i data-lucide="send" class="w-4 h-4 text-emerald-400"></i>
-                <span>Send Direct Message</span>
-              </a>
-              <a href="https://linkedin.com/in/sayana-chand-k-sck/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-                <i data-lucide="external-link" class="w-4 h-4 text-blue-400"></i>
-                <span>Open LinkedIn Profile</span>
-              </a>
+            <!-- Quick Inquiry Form -->
+            <div class="lg:col-span-7 bg-[#0f1535] border border-white/5 rounded-2xl p-5 md:p-6">
+              <h4 class="text-sm font-bold text-white mb-4">Send a Direct Message</h4>
+              <form id="contactForm" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-[11px] text-[#a0aec0] font-medium mb-1">Your Name</label>
+                    <input 
+                      id="contactName" 
+                      type="text" 
+                      required 
+                      placeholder="e.g. Alex Morgan" 
+                      class="w-full bg-[#0a0e2a] border border-white/10 text-white placeholder-slate-500 text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#0075ff]"
+                    >
+                  </div>
+                  <div>
+                    <label class="block text-[11px] text-[#a0aec0] font-medium mb-1">Your Email</label>
+                    <input 
+                      id="contactEmail" 
+                      type="email" 
+                      required 
+                      placeholder="alex@company.com" 
+                      class="w-full bg-[#0a0e2a] border border-white/10 text-white placeholder-slate-500 text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#0075ff]"
+                    >
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-[11px] text-[#a0aec0] font-medium mb-1">Role / Subject</label>
+                  <input 
+                    id="contactSubject" 
+                    type="text" 
+                    placeholder="Senior Data Scientist / ML Project Collaboration" 
+                    class="w-full bg-[#0a0e2a] border border-white/10 text-white placeholder-slate-500 text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#0075ff]"
+                  >
+                </div>
+
+                <div>
+                  <label class="block text-[11px] text-[#a0aec0] font-medium mb-1">Message</label>
+                  <textarea 
+                    id="contactMessage" 
+                    rows="3" 
+                    required 
+                    placeholder="Hello Sayana, we loved your fraud detection and clinical NLP systems and would like to speak regarding..." 
+                    class="w-full bg-[#0a0e2a] border border-white/10 text-white placeholder-slate-500 text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#0075ff]"
+                  ></textarea>
+                </div>
+
+                <div class="flex items-center justify-between pt-1">
+                  <span class="text-[11px] text-[#718096]">Direct email delivery to Sayana Chand K</span>
+                  <button type="submit" class="btn-vision-primary text-xs py-2.5 px-5">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                    <span>Send Message</span>
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Footer -->
-      <footer class="pt-8 pb-12 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+      <footer class="pt-6 pb-12 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#718096]">
         <div>
-          <span>© 2026 Sayana Chand K. Designed with ❤️ by Sayana Chand</span>
+          <span>© 2026 Sayana Chand K • Designed with Vision UI Dashboard theme</span>
         </div>
         <div class="flex items-center gap-4">
-          <a href="#overview" class="hover:text-slate-300 transition-colors">Back to top</a>
-          <span>•</span>
-          <a href="https://linkedin.com/in/sayana-chand-k-sck/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition-colors">LinkedIn</a>
+          <a href="#overview" class="hover:text-white transition-colors">Overview</a>
+          <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+          <a href="#experience" class="hover:text-white transition-colors">Experience</a>
+          <a href="#contact" class="hover:text-white transition-colors">Contact</a>
         </div>
       </footer>
 
     </main>
   </div>
 
-  <!-- Interactive Project Details Modal Overlay -->
-  <div id="projectModalOverlay" class="modal-overlay">
-    <div class="modal-container">
-      <div id="modalDetailsContent">
-        <!-- Dynamically injected via app.js -->
-      </div>
+  <!-- Project Architecture Inspection Modal -->
+  <div id="projectModalBackdrop" class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 hidden" onclick="closeProjectModal()"></div>
+  <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 hidden pointer-events-none">
+    <div id="projectModalContent" class="vision-card-solid w-full max-w-2xl max-h-[90vh] overflow-y-auto pointer-events-auto border border-white/15 shadow-2xl relative">
+      <!-- Populated dynamically by openProjectModal() -->
     </div>
   </div>
 
-  <!-- Application Scripts -->
+  <!-- Scripts -->
   <script src="./assets/data/portfolio-data.js"></script>
   <script src="./assets/js/charts.js"></script>
   <script src="./assets/js/app.js"></script>
