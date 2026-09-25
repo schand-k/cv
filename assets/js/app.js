@@ -1,83 +1,89 @@
 /**
- * Sayana Chand K - Investment Portfolio Dashboard Application Logic
+ * Sayana Chand K - Vision UI Application Controller
+ * Manages UI rendering, responsive mobile drawer, search & filters, and modal dialogues
  */
 
 document.addEventListener("DOMContentLoaded", () => {
   renderProfileInfo();
   renderKpis();
-  renderHoldingsTable();
+  renderProjectsTable();
   renderExperience();
   renderSkillsMatrix();
   renderEducationAndCerts();
   initEventListeners();
   initCharts();
-  lucide.createIcons();
+  initScrollSpy();
+  
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 });
 
 /**
- * Populate Profile and Hero Information
+ * Populate Profile, Brand and Hero Information
  */
 function renderProfileInfo() {
   const p = PORTFOLIO_DATA.profile;
   
-  // Set text in sidebar and headers
-  setTextContent('userName', p.name);
-  setTextContent('userRole', p.title);
-  setTextContent('userLocation', p.location);
+  setTextContent('heroName', p.name);
+  setTextContent('brandName', p.name);
+  setTextContent('heroTagline', p.tagline);
   setTextContent('heroSummary', p.summary);
   setTextContent('statusBadgeText', p.statusText);
+  setTextContent('userLocationText', p.location);
 
-  // Contact links
-  const emailLink = document.getElementById('userEmailLink');
-  if (emailLink) {
-    emailLink.href = `mailto:${p.email}`;
-    emailLink.innerText = p.email;
-  }
+  const emailLinks = document.querySelectorAll('.userEmailLink');
+  emailLinks.forEach(el => {
+    el.href = `mailto:${p.email}`;
+    if (el.tagName === 'SPAN' || el.classList.contains('email-text')) {
+      el.innerText = p.email;
+    }
+  });
 
   const resumeLinks = document.querySelectorAll('.userResumeLink');
   resumeLinks.forEach(link => {
     link.href = p.resumeUrl || './assets/Sayana_Chand_K_Resume.pdf';
   });
 
-  const linkedinLink = document.getElementById('userLinkedinLink');
-  if (linkedinLink) {
-    linkedinLink.href = p.linkedin;
-  }
+  const linkedinLinks = document.querySelectorAll('.userLinkedinLink');
+  linkedinLinks.forEach(link => {
+    link.href = p.linkedin;
+  });
+
+  const githubLinks = document.querySelectorAll('.userGithubLink');
+  githubLinks.forEach(link => {
+    link.href = p.github;
+  });
 }
 
 /**
- * Render Top KPI Cards
+ * Render Top 4 Vision UI KPI Cards
  */
 function renderKpis() {
   const container = document.getElementById('kpiCardsContainer');
   if (!container) return;
 
   container.innerHTML = PORTFOLIO_DATA.kpis.map(kpi => {
-    const badgeClass = kpi.badgeType === 'positive' ? 'badge-gain' :
-                       kpi.badgeType === 'cyan' ? 'badge-cyan' :
-                       kpi.badgeType === 'purple' ? 'badge-purple' : 'badge-amber';
-    
+    const isGain = kpi.badgeType === 'positive';
     return `
-      <div class="dash-card p-5 relative overflow-hidden group">
-        <div class="flex items-center justify-between mb-3">
-          <div class="flex items-center gap-2">
-            <span class="ticker-tag">${kpi.ticker}</span>
-            <span class="text-xs text-slate-400 font-medium">${kpi.title}</span>
+      <div class="vision-card p-5 relative overflow-hidden group hover:border-white/20">
+        <div class="flex items-center justify-between">
+          <div class="space-y-1">
+            <span class="text-xs font-semibold text-[#a0aec0] uppercase tracking-wider">${kpi.title}</span>
+            <div class="text-2xl font-bold font-mono-nums text-white tracking-tight flex items-baseline gap-2">
+              <span>${kpi.value}</span>
+              <span class="${isGain ? 'text-[#01b574]' : 'text-[#38bdf8]'} text-xs font-bold font-sans">
+                ${kpi.badge}
+              </span>
+            </div>
+            <div class="text-[11px] text-[#718096]">${kpi.subtext}</div>
           </div>
-          <span class="${badgeClass}">
-            ${kpi.badgeType === 'positive' ? '<i data-lucide="trending-up" class="w-3 h-3"></i>' : ''}
-            ${kpi.badge}
-          </span>
+          <div class="vision-icon-box shadow-[0_4px_14px_rgba(0,117,255,0.45)]">
+            <i data-lucide="${kpi.icon || 'trending-up'}" class="w-5 h-5"></i>
+          </div>
         </div>
-        
-        <div class="flex items-baseline justify-between">
-          <div>
-            <div class="text-3xl font-bold font-mono-nums text-white tracking-tight">${kpi.value}</div>
-            <div class="text-xs text-slate-400 mt-1">${kpi.subtext}</div>
-          </div>
-          <div class="w-24 h-10">
-            <canvas id="sparkline-${kpi.id}"></canvas>
-          </div>
+        <div class="w-full h-8 mt-2 opacity-60 group-hover:opacity-100 transition-opacity">
+          <canvas id="sparkline-${kpi.id}"></canvas>
         </div>
       </div>
     `;
@@ -85,15 +91,32 @@ function renderKpis() {
 }
 
 /**
- * Render Holdings / Flagship Projects Table
+ * Render Flagship Projects Table (Vision UI Table format)
  */
-function renderHoldingsTable(filterQuery = "") {
-  const tbody = document.getElementById('holdingsTableBody');
+let currentCategoryFilter = "all";
+let currentSearchQuery = "";
+
+function renderProjectsTable() {
+  const tbody = document.getElementById('projectsTableBody');
+  const cardsContainer = document.getElementById('projectsCardsMobile');
   if (!tbody) return;
 
   let projects = PORTFOLIO_DATA.projects;
-  if (filterQuery.trim() !== "") {
-    const q = filterQuery.toLowerCase();
+
+  // Category filter
+  if (currentCategoryFilter !== "all") {
+    projects = projects.filter(p => {
+      if (currentCategoryFilter === 'ml') return p.category.toLowerCase().includes('supervised') || p.category.toLowerCase().includes('anomaly');
+      if (currentCategoryFilter === 'nlp') return p.category.toLowerCase().includes('nlp') || p.category.toLowerCase().includes('clinical');
+      if (currentCategoryFilter === 'mlops') return p.category.toLowerCase().includes('mlops') || p.category.toLowerCase().includes('backend');
+      if (currentCategoryFilter === 'cloud') return p.category.toLowerCase().includes('cloud') || p.category.toLowerCase().includes('migration');
+      return true;
+    });
+  }
+
+  // Search filter
+  if (currentSearchQuery.trim() !== "") {
+    const q = currentSearchQuery.toLowerCase();
     projects = projects.filter(p => 
       p.title.toLowerCase().includes(q) ||
       p.ticker.toLowerCase().includes(q) ||
@@ -105,176 +128,311 @@ function renderHoldingsTable(filterQuery = "") {
   if (projects.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="6" class="text-center py-8 text-slate-400">
-          No projects matching "<span class="text-white">${filterQuery}</span>"
+        <td colspan="5" class="text-center py-10 text-slate-400">
+          <i data-lucide="search-x" class="w-8 h-8 mx-auto mb-2 text-slate-500"></i>
+          No projects matching your filter criteria.
         </td>
       </tr>
     `;
+    if (cardsContainer) {
+      cardsContainer.innerHTML = `
+        <div class="text-center py-8 text-slate-400">
+          No projects matching your filter criteria.
+        </div>
+      `;
+    }
+    if (window.lucide) lucide.createIcons();
     return;
   }
 
-  tbody.innerHTML = projects.map(proj => {
-    const isFraud = proj.id === 'cc-fraud-detection';
-    const primaryMetric = proj.metrics.accuracy || proj.metrics.latency || proj.metrics.dataLoss || "Active";
-    const volumeMetric = proj.metrics.volume || proj.metrics.throughput || proj.metrics.storage || "High";
+  // Desktop Table Rows
+  tbody.innerHTML = projects.map(p => {
+    const statusClass = p.status.includes('Verified') ? 'badge-pill-verified' :
+                        p.status.includes('Precision') ? 'badge-pill-verified' :
+                        p.status.includes('Deployed') ? 'badge-pill-deployed' : 'badge-pill-enterprise';
 
     return `
-      <tr onclick="openProjectModal('${proj.id}')" class="group">
+      <tr class="hover:bg-white/[0.02] transition-colors">
         <td>
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-slate-800/80 border border-white/10 flex items-center justify-center font-mono font-bold text-xs ${proj.color === 'emerald' ? 'text-emerald-400' : proj.color === 'cyan' ? 'text-cyan-400' : 'text-purple-400'}">
-              ${proj.ticker.substring(0, 3)}
+            <div class="w-9 h-9 rounded-xl bg-[#1a1f37] border border-white/10 flex items-center justify-center text-[#0075ff] flex-shrink-0">
+              <i data-lucide="${getProjectIcon(p.id)}" class="w-4 h-4"></i>
             </div>
             <div>
-              <div class="font-semibold text-white group-hover:text-emerald-400 transition-colors flex items-center gap-2">
-                ${proj.title}
-                <span class="ticker-tag text-[10px] py-0.5 px-1.5">${proj.ticker}</span>
+              <div class="font-bold text-white text-sm flex items-center gap-2">
+                <span>${p.title}</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">${p.ticker}</span>
               </div>
-              <div class="text-xs text-slate-400 mt-0.5">${proj.category}</div>
+              <div class="text-xs text-[#a0aec0]">${p.category}</div>
             </div>
           </div>
         </td>
         <td>
-          <span class="font-mono-nums font-semibold text-white text-base">${primaryMetric}</span>
-          <div class="text-[11px] text-slate-400">${proj.badge}</div>
-        </td>
-        <td class="font-mono-nums text-slate-300">
-          ${volumeMetric}
+          <div class="text-xs space-y-0.5">
+            <span class="font-mono font-bold text-white">${Object.values(p.metrics)[0]}</span>
+            <span class="text-[11px] text-[#718096] block">${Object.keys(p.metrics)[0]}: ${Object.values(p.metrics)[0]}</span>
+          </div>
         </td>
         <td>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            ${proj.status}
+          <span class="badge-pill-status ${statusClass}">
+            <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+            ${p.status}
           </span>
         </td>
         <td>
-          <div class="flex flex-wrap gap-1 max-w-[200px]">
-            ${proj.tags.slice(0, 3).map(tag => `
-              <span class="text-[10px] bg-slate-800/70 border border-white/5 text-slate-300 px-2 py-0.5 rounded">
-                ${tag}
-              </span>
-            `).join('')}
-            ${proj.tags.length > 3 ? `<span class="text-[10px] text-slate-400 self-center">+${proj.tags.length - 3}</span>` : ''}
+          <div class="flex flex-wrap gap-1.5 max-w-xs">
+            ${p.tags.slice(0, 3).map(tag => `<span class="badge-tag">${tag}</span>`).join('')}
+            ${p.tags.length > 3 ? `<span class="text-[10px] text-[#718096] self-center">+${p.tags.length - 3}</span>` : ''}
           </div>
         </td>
         <td class="text-right">
-          <button class="btn-secondary text-xs py-1.5 px-3 group-hover:border-emerald-500/50 group-hover:text-emerald-300">
+          <button onclick="openProjectModal('${p.id}')" class="btn-vision-secondary text-xs py-1.5 px-3">
             <span>Inspect</span>
-            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
           </button>
         </td>
       </tr>
     `;
   }).join('');
 
-  lucide.createIcons();
+  // Mobile Cards (M-web friendly view)
+  if (cardsContainer) {
+    cardsContainer.innerHTML = projects.map(p => {
+      const statusClass = p.status.includes('Verified') ? 'badge-pill-verified' :
+                          p.status.includes('Precision') ? 'badge-pill-verified' :
+                          p.status.includes('Deployed') ? 'badge-pill-deployed' : 'badge-pill-enterprise';
+
+      return `
+        <div class="vision-card p-4 space-y-3">
+          <div class="flex items-start justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-[#1a1f37] border border-white/10 flex items-center justify-center text-[#0075ff]">
+                <i data-lucide="${getProjectIcon(p.id)}" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm">${p.title}</h4>
+                <span class="text-[11px] text-[#a0aec0]">${p.category}</span>
+              </div>
+            </div>
+            <span class="badge-pill-status ${statusClass} text-[10px]">
+              ${p.status}
+            </span>
+          </div>
+          
+          <p class="text-xs text-slate-300 leading-relaxed">${p.summary}</p>
+          
+          <div class="flex flex-wrap gap-1">
+            ${p.tags.slice(0, 4).map(tag => `<span class="badge-tag">${tag}</span>`).join('')}
+          </div>
+          
+          <div class="flex items-center justify-between pt-2 border-t border-white/5">
+            <div class="text-xs font-mono font-bold text-white">
+              ${Object.values(p.metrics)[0]} <span class="text-[10px] font-normal text-slate-400">(${Object.keys(p.metrics)[0]})</span>
+            </div>
+            <button onclick="openProjectModal('${p.id}')" class="btn-vision-primary text-xs py-1.5 px-3">
+              Inspect Model
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  if (window.lucide) lucide.createIcons();
+}
+
+function getProjectIcon(id) {
+  if (id.includes('fraud')) return 'shield-alert';
+  if (id.includes('nlp')) return 'file-text';
+  if (id.includes('neuro') || id.includes('automation')) return 'workflow';
+  if (id.includes('microservices') || id.includes('api')) return 'server';
+  if (id.includes('cloud') || id.includes('migration')) return 'cloud-upload';
+  return 'cpu';
 }
 
 /**
- * Render Experience Timeline
+ * Open Project Details Modal
+ */
+function openProjectModal(id) {
+  const p = PORTFOLIO_DATA.projects.find(item => item.id === id);
+  if (!p) return;
+
+  const modal = document.getElementById('projectModal');
+  const backdrop = document.getElementById('projectModalBackdrop');
+  const modalContent = document.getElementById('projectModalContent');
+  if (!modal || !modalContent) return;
+
+  modalContent.innerHTML = `
+    <div class="p-6 md:p-8 space-y-6">
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between border-b border-white/10 pb-5">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-[#0075ff]/20 border border-[#0075ff]/40 flex items-center justify-center text-[#0075ff]">
+            <i data-lucide="${getProjectIcon(p.id)}" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold">${p.ticker}</span>
+              <span class="text-xs text-[#01b574] font-semibold">${p.status}</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mt-1">${p.title}</h3>
+            <p class="text-xs text-[#a0aec0]">${p.category}</p>
+          </div>
+        </div>
+        <button onclick="closeProjectModal()" class="text-slate-400 hover:text-white p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Summary -->
+      <div class="bg-[#0f1535] rounded-xl p-4 border border-white/5">
+        <h4 class="text-xs font-bold text-blue-400 uppercase tracking-wider mb-1">Architecture Summary</h4>
+        <p class="text-xs text-slate-200 leading-relaxed">${p.summary}</p>
+      </div>
+
+      <!-- Metrics Breakdown -->
+      ${p.metricsBreakdown ? `
+        <div>
+          <h4 class="text-xs font-bold text-[#a0aec0] uppercase tracking-wider mb-3">Diagnostic & Validation Metrics</h4>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            ${p.metricsBreakdown.map(m => `
+              <div class="bg-[#121838] border border-white/5 rounded-xl p-3 text-center">
+                <div class="text-[11px] text-slate-400">${m.label}</div>
+                <div class="text-lg font-bold font-mono text-white mt-1">${m.value}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+
+      <!-- Detailed Deliverables -->
+      <div>
+        <h4 class="text-xs font-bold text-[#a0aec0] uppercase tracking-wider mb-3">Methodology & Implementation Highlights</h4>
+        <ul class="space-y-2.5">
+          ${p.details.map(bullet => `
+            <li class="flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0075ff] mt-1.5 flex-shrink-0"></span>
+              <span>${bullet}</span>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+
+      <!-- Tags -->
+      <div>
+        <h4 class="text-xs font-bold text-[#a0aec0] uppercase tracking-wider mb-2">Technologies & Tooling</h4>
+        <div class="flex flex-wrap gap-2">
+          ${p.tags.map(tag => `<span class="badge-tag text-xs py-1 px-3">${tag}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+
+  modal.classList.remove('hidden');
+  if (backdrop) backdrop.classList.remove('hidden');
+  if (window.lucide) lucide.createIcons();
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+  const modal = document.getElementById('projectModal');
+  const backdrop = document.getElementById('projectModalBackdrop');
+  if (modal) modal.classList.add('hidden');
+  if (backdrop) backdrop.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+/**
+ * Render Experience Section
  */
 function renderExperience() {
   const container = document.getElementById('experienceContainer');
   if (!container) return;
 
   container.innerHTML = PORTFOLIO_DATA.experience.map(exp => `
-    <div class="dash-card p-6 md:p-8">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-800 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20">
-            CTS
+    <div class="vision-card p-6 md:p-8 space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-5">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#0075ff] to-[#7551ff] p-[1px]">
+            <div class="w-full h-full bg-[#0a0e2a] rounded-[15px] flex items-center justify-center font-bold text-white text-base">
+              CTS
+            </div>
           </div>
           <div>
-            <h3 class="text-xl font-bold text-white">${exp.role}</h3>
-            <div class="text-slate-300 text-sm font-medium flex items-center gap-2 mt-0.5">
-              <span>${exp.company}</span>
-              <span class="text-slate-500">•</span>
-              <span class="text-slate-400">${exp.location}</span>
+            <h3 class="text-lg font-bold text-white">${exp.company}</h3>
+            <div class="flex flex-wrap items-center gap-2 text-xs text-[#a0aec0] mt-0.5">
+              <span class="text-[#0075ff] font-semibold">${exp.role}</span>
+              <span>•</span>
+              <span>${exp.type}</span>
+              <span>•</span>
+              <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3 h-3"></i> ${exp.location}</span>
             </div>
           </div>
         </div>
-        
-        <div class="flex flex-wrap items-center gap-2.5">
-          <span class="badge-cyan py-1 px-3">
-            <i data-lucide="calendar" class="w-3.5 h-3.5 inline mr-1"></i>
+        <div class="self-start md:self-auto">
+          <span class="font-mono text-xs px-3 py-1.5 rounded-full bg-[#1a1f37] border border-white/10 text-white font-medium">
             ${exp.period}
-          </span>
-          <span class="badge-gain py-1 px-3">
-            <i data-lucide="check-circle" class="w-3.5 h-3.5 inline mr-1"></i>
-            ${exp.type}
           </span>
         </div>
       </div>
 
-      <p class="text-slate-300 text-sm mt-5 leading-relaxed">
+      <p class="text-sm text-slate-300 leading-relaxed">
         ${exp.description}
       </p>
 
-      <div class="mt-6">
-        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-2">
-          <i data-lucide="award" class="w-4 h-4 text-emerald-400"></i>
-          Key Deliverables & Business Impact
-        </h4>
-        <ul class="space-y-3">
-          ${exp.achievements.map(ach => `
-            <li class="flex items-start gap-3 text-sm text-slate-300">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0 shadow-sm shadow-emerald-400"></span>
-              <span>${ach}</span>
-            </li>
+      <div>
+        <h4 class="text-xs font-bold text-[#a0aec0] uppercase tracking-wider mb-3">Key Quantified Impact & Deliverables</h4>
+        <div class="space-y-3">
+          ${exp.achievements.map(item => `
+            <div class="flex items-start gap-3 text-xs md:text-sm text-slate-200">
+              <div class="w-5 h-5 rounded-lg bg-[#0075ff]/15 flex items-center justify-center text-[#0075ff] flex-shrink-0 mt-0.5">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+              </div>
+              <span class="leading-relaxed">${item}</span>
+            </div>
           `).join('')}
-        </ul>
+        </div>
       </div>
 
-      <div class="mt-6 pt-5 border-t border-white/5 flex flex-wrap items-center gap-2">
-        <span class="text-xs text-slate-400 mr-2 font-medium">Core Tech:</span>
-        ${exp.skills.map(skill => `
-          <span class="text-xs font-mono bg-slate-800/80 border border-white/10 text-slate-200 px-2.5 py-1 rounded-md">
-            ${skill}
-          </span>
-        `).join('')}
+      <div class="pt-2 border-t border-white/5 flex flex-wrap gap-2 items-center">
+        <span class="text-xs text-[#718096] font-medium mr-2">Core Tech:</span>
+        ${exp.skills.map(skill => `<span class="badge-tag">${skill}</span>`).join('')}
       </div>
     </div>
   `).join('');
 }
 
 /**
- * Render Skills Matrix
+ * Render Technical Skills Matrix
  */
-function renderSkillsMatrix(filterQuery = "") {
+function renderSkillsMatrix() {
   const container = document.getElementById('skillsMatrixContainer');
   if (!container) return;
 
-  const categories = PORTFOLIO_DATA.skillCategories;
+  const colorThemes = ['blue', 'teal', 'purple', 'amber'];
 
-  container.innerHTML = categories.map(cat => {
-    let filteredSkills = cat.skills;
-    if (filterQuery.trim() !== "") {
-      filteredSkills = filteredSkills.filter(s => s.name.toLowerCase().includes(filterQuery.toLowerCase()));
-    }
-
-    if (filteredSkills.length === 0 && filterQuery.trim() !== "") return "";
+  container.innerHTML = PORTFOLIO_DATA.skillCategories.map((cat, idx) => {
+    const theme = colorThemes[idx % colorThemes.length];
+    const progressClass = `vision-progress-${theme}`;
 
     return `
-      <div class="dash-card p-6">
-        <div class="flex items-center justify-between pb-4 border-b border-white/5 mb-5">
-          <div class="flex items-center gap-3">
-            <span class="w-3 h-3 rounded-full" style="background-color: ${cat.color}"></span>
-            <h3 class="font-bold text-base text-white">${cat.name}</h3>
-          </div>
-          <span class="text-xs font-mono-nums font-semibold px-2 py-0.5 rounded bg-white/5 text-slate-300">
-            ${cat.share}% Portfolio
-          </span>
+      <div class="vision-card p-6 space-y-4">
+        <div class="flex items-center justify-between border-b border-white/10 pb-3">
+          <h4 class="font-bold text-white text-sm flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[${cat.color}]"></span>
+            ${cat.name}
+          </h4>
+          <span class="text-xs font-mono font-bold text-[#a0aec0]">${cat.share}% Focus</span>
         </div>
-
-        <div class="space-y-4">
-          ${filteredSkills.map(skill => `
-            <div>
-              <div class="flex justify-between text-xs mb-1.5">
-                <span class="text-slate-200 font-medium">${skill.name}</span>
-                <span class="font-mono-nums text-slate-400">${skill.level}%</span>
+        <div class="space-y-3.5">
+          ${cat.skills.map(s => `
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-slate-300 font-medium">${s.name}</span>
+                <span class="font-mono text-slate-400 font-bold">${s.level}%</span>
               </div>
-              <div class="skill-bar-track">
-                <div class="skill-bar-fill" style="width: ${skill.level}%; background-color: ${cat.color}"></div>
+              <div class="vision-progress-track">
+                <div class="vision-progress-bar ${progressClass}" style="width: ${s.level}%"></div>
               </div>
             </div>
           `).join('')}
@@ -288,47 +446,43 @@ function renderSkillsMatrix(filterQuery = "") {
  * Render Education & Certifications
  */
 function renderEducationAndCerts() {
-  // Education
   const eduContainer = document.getElementById('educationContainer');
+  const certContainer = document.getElementById('certificationsContainer');
+
   if (eduContainer) {
     eduContainer.innerHTML = PORTFOLIO_DATA.education.map(edu => `
-      <div class="dash-card p-5 hover:border-white/20 transition-all">
-        <div class="flex items-start justify-between gap-3 mb-2">
+      <div class="vision-card p-5 space-y-2.5">
+        <div class="flex items-start justify-between">
           <div>
-            <h4 class="font-bold text-white text-base">${edu.institution}</h4>
-            <div class="text-emerald-400 text-xs font-semibold mt-0.5">${edu.degree}</div>
+            <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">${edu.badge}</span>
+            <h4 class="font-bold text-white text-sm mt-1.5">${edu.degree}</h4>
+            <div class="text-xs text-[#0075ff] font-medium">${edu.institution}</div>
+            <div class="text-xs text-slate-400">${edu.field} • ${edu.location}</div>
           </div>
-          <span class="badge-gain text-[10px]">${edu.period}</span>
+          <span class="text-xs font-mono text-slate-400 whitespace-nowrap">${edu.period}</span>
         </div>
-        <div class="text-xs text-slate-400 mb-2">${edu.field} • ${edu.location}</div>
-        <p class="text-xs text-slate-300 leading-relaxed">${edu.highlights}</p>
+        <p class="text-xs text-slate-300 leading-relaxed pt-1">${edu.highlights}</p>
       </div>
     `).join('');
   }
 
-  // Certifications
-  const certContainer = document.getElementById('certificationsContainer');
   if (certContainer) {
-    certContainer.innerHTML = PORTFOLIO_DATA.certifications.map(cert => `
-      <div class="dash-card p-5 hover:border-emerald-500/30 transition-all">
-        <div class="flex items-start justify-between gap-3 mb-2">
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-              <i data-lucide="shield-check" class="w-4 h-4"></i>
+    certContainer.innerHTML = PORTFOLIO_DATA.certifications.map(c => `
+      <div class="vision-card p-5 space-y-2.5">
+        <div class="flex items-start justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-[#1a1f37] border border-white/10 flex items-center justify-center text-[#0075ff]">
+              <i data-lucide="award" class="w-5 h-5"></i>
             </div>
             <div>
-              <h4 class="font-bold text-white text-sm leading-tight">${cert.title}</h4>
-              <span class="text-xs text-slate-400">${cert.issuer}</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">${c.badge}</span>
+              <h4 class="font-bold text-white text-sm mt-1">${c.title}</h4>
+              <div class="text-xs text-slate-400">${c.issuer} • ${c.date}</div>
             </div>
           </div>
-          <span class="ticker-tag text-[10px]">${cert.badge}</span>
         </div>
-        <div class="flex flex-wrap gap-1 mt-3">
-          ${cert.skills.map(s => `
-            <span class="text-[10px] bg-slate-800/80 border border-white/5 text-slate-300 px-2 py-0.5 rounded">
-              ${s}
-            </span>
-          `).join('')}
+        <div class="flex flex-wrap gap-1.5 pt-1">
+          ${c.skills.map(s => `<span class="badge-tag">${s}</span>`).join('')}
         </div>
       </div>
     `).join('');
@@ -336,197 +490,170 @@ function renderEducationAndCerts() {
 }
 
 /**
- * Open Project Details Modal
+ * Event Listeners & Interaction
  */
-function openProjectModal(projectId) {
-  const proj = PORTFOLIO_DATA.projects.find(p => p.id === projectId);
-  if (!proj) return;
+function initEventListeners() {
+  // Mobile Sidebar Drawer Toggle
+  const sidebar = document.getElementById('appSidebar');
+  const openBtn = document.getElementById('mobileMenuBtn');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+  const backdrop = document.getElementById('mobileBackdrop');
 
-  const modalOverlay = document.getElementById('projectModalOverlay');
-  const modalContent = document.getElementById('modalDetailsContent');
-  if (!modalOverlay || !modalContent) return;
+  function openSidebar() {
+    if (sidebar) sidebar.classList.add('open');
+    if (backdrop) backdrop.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
 
-  modalContent.innerHTML = `
-    <div class="p-6 md:p-8">
-      <!-- Header -->
-      <div class="flex items-start justify-between gap-4 pb-6 border-b border-white/10">
-        <div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="ticker-tag">${proj.ticker}</span>
-            <span class="badge-gain">${proj.status}</span>
-            <span class="text-xs text-slate-400">${proj.category}</span>
-          </div>
-          <h2 class="text-2xl font-bold text-white tracking-tight">${proj.title}</h2>
-          <p class="text-sm text-slate-300 mt-2">${proj.summary}</p>
-        </div>
-        <button onclick="closeProjectModal()" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-white/5">
-          <i data-lucide="x" class="w-6 h-6"></i>
-        </button>
-      </div>
-
-      <!-- KPI Metrics Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
-        ${proj.metricsBreakdown.map(m => `
-          <div class="bg-slate-900/80 border border-white/5 rounded-xl p-3.5 text-center">
-            <div class="text-xs text-slate-400 font-medium">${m.label}</div>
-            <div class="text-xl font-bold font-mono-nums text-white mt-1">${m.value}</div>
-          </div>
-        `).join('')}
-      </div>
-
-      <!-- Deep Dive Implementation Breakdown -->
-      <div class="space-y-6">
-        <div>
-          <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-3 flex items-center gap-2">
-            <i data-lucide="cpu" class="w-4 h-4 text-emerald-400"></i>
-            Architectural Highlights & Methodology
-          </h3>
-          <ul class="space-y-2.5">
-            ${proj.details.map(det => `
-              <li class="flex items-start gap-3 text-sm text-slate-300">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0"></span>
-                <span>${det}</span>
-              </li>
-            `).join('')}
-          </ul>
-        </div>
-
-        <!-- Tech Stack Pills -->
-        <div class="pt-4 border-t border-white/10">
-          <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Technologies Used</h4>
-          <div class="flex flex-wrap gap-2">
-            ${proj.tags.map(tag => `
-              <span class="text-xs font-mono bg-slate-800 border border-white/10 text-emerald-300 px-3 py-1 rounded-md">
-                ${tag}
-              </span>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer CTA -->
-      <div class="mt-8 pt-5 border-t border-white/10 flex items-center justify-between">
-        <span class="text-xs text-slate-400">Verified Machine Learning Project Asset</span>
-        <div class="flex gap-3">
-          <button onclick="closeProjectModal()" class="btn-secondary text-xs">Close</button>
-          <a href="mailto:${PORTFOLIO_DATA.profile.email}?subject=Inquiry regarding ${encodeURIComponent(proj.title)}" class="btn-primary text-xs">
-            Discuss Implementation
-          </a>
-        </div>
-      </div>
-    </div>
-  `;
-
-  modalOverlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  lucide.createIcons();
-}
-
-function closeProjectModal() {
-  const modalOverlay = document.getElementById('projectModalOverlay');
-  if (modalOverlay) {
-    modalOverlay.classList.remove('active');
+  function closeSidebar() {
+    if (sidebar) sidebar.classList.remove('open');
+    if (backdrop) backdrop.classList.add('hidden');
     document.body.style.overflow = '';
+  }
+
+  if (openBtn) openBtn.addEventListener('click', openSidebar);
+  if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+  if (backdrop) backdrop.addEventListener('click', closeSidebar);
+
+  // Close sidebar on link click (mobile)
+  document.querySelectorAll('.app-sidebar .nav-item').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 1024) {
+        closeSidebar();
+      }
+    });
+  });
+
+  // Project Category Filters
+  document.querySelectorAll('.project-filter-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.project-filter-btn').forEach(b => b.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      currentCategoryFilter = e.currentTarget.dataset.category;
+      renderProjectsTable();
+    });
+  });
+
+  // Project Search Input
+  const searchInput = document.getElementById('projectSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentSearchQuery = e.target.value;
+      renderProjectsTable();
+    });
+  }
+
+  // Header Global Search (filters and scrolls to projects)
+  const headerSearch = document.getElementById('globalSearchInput');
+  if (headerSearch) {
+    headerSearch.addEventListener('input', (e) => {
+      currentSearchQuery = e.target.value;
+      const targetSec = document.getElementById('projects');
+      if (targetSec && currentSearchQuery.length > 1) {
+        targetSec.scrollIntoView({ behavior: 'smooth' });
+      }
+      renderProjectsTable();
+    });
+  }
+
+  // Timeframe buttons for chart
+  document.querySelectorAll('.timeframe-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const tf = e.currentTarget.dataset.tf;
+      if (typeof setTimeframe === 'function') {
+        setTimeframe(tf);
+      }
+    });
+  });
+
+  // Keyboard escape for modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeProjectModal();
+      closeSidebar();
+    }
+  });
+
+  // Contact form submission handler
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contactName')?.value || '';
+      const email = document.getElementById('contactEmail')?.value || '';
+      const subject = document.getElementById('contactSubject')?.value || 'Data Scientist Inquiry';
+      const message = document.getElementById('contactMessage')?.value || '';
+
+      const body = `Hi Sayana,\n\n${message}\n\nFrom: ${name} (${email})`;
+      window.location.href = `mailto:${PORTFOLIO_DATA.profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      showToast("Opening your email client to send message!");
+    });
   }
 }
 
 /**
- * Event Listeners & Interactive Filters
+ * Scrollspy to highlight active nav item
  */
-function initEventListeners() {
-  // Modal backdrop click
-  const modalOverlay = document.getElementById('projectModalOverlay');
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) closeProjectModal();
+function initScrollSpy() {
+  const sections = document.querySelectorAll('section[id], div[id="overview"]');
+  const navItems = document.querySelectorAll('.app-sidebar .nav-item');
+
+  window.addEventListener('scroll', () => {
+    let currentId = '';
+    const scrollY = window.pageYOffset;
+
+    sections.forEach(section => {
+      const sectionHeight = section.offsetHeight;
+      const sectionTop = section.offsetTop - 120;
+      const sectionId = section.getAttribute('id');
+
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        currentId = sectionId;
+      }
     });
-  }
 
-  // Escape key closes modal
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeProjectModal();
-  });
-
-  // Global Search input
-  const searchInput = document.getElementById('globalSearchInput');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      const q = e.target.value;
-      renderHoldingsTable(q);
-      renderSkillsMatrix(q);
-    });
-  }
-
-  // Timeframe selector buttons (1M, 6M, 1Y, ALL)
-  document.querySelectorAll('.timeframe-pill').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      document.querySelectorAll('.timeframe-pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const tf = btn.getAttribute('data-timeframe');
-      updatePerformanceTimeframe(tf);
-    });
-  });
-
-  // Metric selector buttons (Accuracy, Recall, Loss, All)
-  document.querySelectorAll('.metric-filter-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      document.querySelectorAll('.metric-filter-btn').forEach(b => {
-        b.classList.remove('bg-white/10', 'text-white');
-        b.classList.add('text-slate-400');
-      });
-      btn.classList.add('bg-white/10', 'text-white');
-      btn.classList.remove('text-slate-400');
-      const metric = btn.getAttribute('data-metric');
-      updateChartMetricFilter(metric);
-    });
-  });
-
-  // Mobile sidebar toggle
-  const menuBtn = document.getElementById('mobileMenuToggle');
-  const sidebar = document.getElementById('appSidebar');
-  const closeSidebarBtn = document.getElementById('closeSidebarBtn');
-
-  if (menuBtn && sidebar) {
-    menuBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-    });
-  }
-
-  if (closeSidebarBtn && sidebar) {
-    closeSidebarBtn.addEventListener('click', () => {
-      sidebar.classList.remove('open');
-    });
-  }
-
-  // Close mobile sidebar on nav click
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      if (sidebar) sidebar.classList.remove('open');
-    });
-  });
-
-  // Scrollspy for active nav link
-  window.addEventListener('scroll', handleScrollSpy);
-}
-
-function handleScrollSpy() {
-  const sections = document.querySelectorAll('section[id]');
-  const scrollY = window.pageYOffset;
-
-  sections.forEach(current => {
-    const sectionHeight = current.offsetHeight;
-    const sectionTop = current.offsetTop - 120;
-    const sectionId = current.getAttribute('id');
-
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${sectionId}`) {
-          link.classList.add('active');
+    if (currentId) {
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === `#${currentId}`) {
+          item.classList.add('active');
         }
       });
     }
   });
+}
+
+/**
+ * Copy to Clipboard Helper
+ */
+function copyToClipboard(text, message = "Copied to clipboard!") {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast(message);
+  }).catch(() => {
+    showToast(`Value: ${text}`);
+  });
+}
+
+/**
+ * Toast Notification
+ */
+function showToast(msg) {
+  const existing = document.getElementById('visionToast');
+  if (existing) existing.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'visionToast';
+  toast.className = 'fixed bottom-6 right-6 z-50 bg-[#0075ff] text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-blue-500/30 flex items-center gap-2 transform transition-all duration-300';
+  toast.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i> <span>${msg}</span>`;
+  document.body.appendChild(toast);
+  if (window.lucide) lucide.createIcons();
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
 }
 
 function setTextContent(elementId, text) {
