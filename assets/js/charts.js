@@ -279,7 +279,6 @@ function initGauges() {
     if (reliabilityCircle) {
       const radius = reliabilityCircle.r.baseVal.value || 68;
       const circumference = 2 * Math.PI * radius;
-      // 93% or 98%
       reliabilityCircle.style.strokeDasharray = `${circumference}`;
       reliabilityCircle.style.strokeDashoffset = `${circumference * (1 - 0.93)}`;
     }
