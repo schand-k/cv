@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProjectsTable();
   renderExperience();
   renderSkillsMatrix();
+  renderTechnicalSkillsGrouped();
   renderEducationAndCerts();
   initEventListeners();
   initCharts();
@@ -42,7 +43,12 @@ function renderProfileInfo() {
 
   const resumeLinks = document.querySelectorAll('.userResumeLink');
   resumeLinks.forEach(link => {
-    link.href = p.resumeUrl || './assets/Sayana_Chand_K_Resume.pdf';
+    if (typeof RESUME_PDF_BASE64 !== 'undefined' && RESUME_PDF_BASE64) {
+      link.href = RESUME_PDF_BASE64;
+    } else {
+      link.href = p.resumeUrl || './assets/Sayana_Chand_K_Resume.pdf';
+    }
+    link.setAttribute('download', 'Sayana_Chand_K_Resume.pdf');
   });
 
   const linkedinLinks = document.querySelectorAll('.userLinkedinLink');
@@ -408,7 +414,7 @@ function renderExperience() {
 }
 
 /**
- * Render Technical Skills Matrix
+ * Render Technical Skills Matrix (Domain Focus Bars)
  */
 function renderSkillsMatrix() {
   const container = document.getElementById('skillsMatrixContainer');
@@ -445,6 +451,28 @@ function renderSkillsMatrix() {
       </div>
     `;
   }).join('');
+}
+
+/**
+ * Render Full 10-Category Technical Skills Directory from Attached CV
+ */
+function renderTechnicalSkillsGrouped() {
+  const container = document.getElementById('technicalSkillsGroupedContainer');
+  if (!container || !PORTFOLIO_DATA.technicalSkillsGrouped) return;
+
+  container.innerHTML = PORTFOLIO_DATA.technicalSkillsGrouped.map(group => `
+    <div class="vision-card p-4 space-y-3">
+      <div class="flex items-center gap-2.5 pb-2 border-b border-white/5">
+        <div class="w-7 h-7 rounded-lg bg-[#0075ff]/15 flex items-center justify-center text-[#0075ff] flex-shrink-0">
+          <i data-lucide="${group.icon || 'code'}" class="w-3.5 h-3.5"></i>
+        </div>
+        <h5 class="text-xs font-bold text-white tracking-wide">${group.category}</h5>
+      </div>
+      <div class="flex flex-wrap gap-1.5">
+        ${group.skills.map(s => `<span class="badge-tag text-[11px] py-1 px-2.5">${s}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
 }
 
 /**
@@ -492,6 +520,26 @@ function renderEducationAndCerts() {
       </div>
     `).join('');
   }
+}
+
+/**
+ * Open Full CV Modal
+ */
+function openCvModal() {
+  const modal = document.getElementById('cvModal');
+  const backdrop = document.getElementById('cvModalBackdrop');
+  if (modal) modal.classList.remove('hidden');
+  if (backdrop) backdrop.classList.remove('hidden');
+  if (window.lucide) lucide.createIcons();
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCvModal() {
+  const modal = document.getElementById('cvModal');
+  const backdrop = document.getElementById('cvModalBackdrop');
+  if (modal) modal.classList.add('hidden');
+  if (backdrop) backdrop.classList.add('hidden');
+  document.body.style.overflow = '';
 }
 
 /**
@@ -571,10 +619,11 @@ function initEventListeners() {
     });
   });
 
-  // Keyboard escape for modal
+  // Keyboard escape for modals
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeProjectModal();
+      closeCvModal();
       closeSidebar();
     }
   });
