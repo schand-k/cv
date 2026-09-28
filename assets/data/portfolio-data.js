@@ -321,7 +321,88 @@ const PORTFOLIO_DATA = {
         { name: "Tableau & Interactive Dashboards", level: 88 },
         { name: "Matplotlib & Seaborn Visualization", level: 95 },
         { name: "MongoDB & NoSQL", level: 82 },
-        { name: "Statistics (Hypothesis Testing, ANOVA, A/B Testing)", level: 90 }
+        { name: "Statistics (Hypothesis Testing, ANOVA, A/B Testing)", level: 90 },
+        { name: "Excel (Advanced Functions, Pivot Tables, Power Query)", level: 92 },
+        { name: "Data Cleaning, Preprocessing & Transformation", level: 96 },
+        { name: "Data Storytelling & Agile Methodology", level: 90 }
+      ]
+    }
+  ],
+
+  technicalSkillsGrouped: [
+    {
+      category: "Programming & Databases",
+      icon: "terminal",
+      skills: ["Python", "SQL", "MongoDB"]
+    },
+    {
+      category: "Data Science & Machine Learning",
+      icon: "activity",
+      skills: [
+        "Machine Learning", "Supervised Learning", "Unsupervised Learning", 
+        "Ensemble Methods", "Feature Engineering", "Feature Selection", 
+        "Hyperparameter Tuning", "Model Evaluation", "Model Interpretability (SHAP, LIME)", 
+        "Predictive Modeling", "Time Series Analysis"
+      ]
+    },
+    {
+      category: "Deep Learning",
+      icon: "cpu",
+      skills: [
+        "Neural Networks", "CNN", "RNN", "LSTM", "GRU", "Transformers", "Attention Mechanisms"
+      ]
+    },
+    {
+      category: "NLP & Generative AI",
+      icon: "sparkles",
+      skills: [
+        "Tokenization", "Lemmatization", "Stemming", "Named Entity Recognition (NER)", 
+        "Text Classification", "Sentiment Analysis", "Topic Modeling", "Word Embeddings", 
+        "BERT", "Large Language Models (LLMs)", "Fine-Tuning", "Prompt Engineering", 
+        "Retrieval-Augmented Generation (RAG)", "Summarization", "Generative AI"
+      ]
+    },
+    {
+      category: "Computer Vision",
+      icon: "video",
+      skills: [
+        "Real-time video stream processing", "Deep learning-based object/pedestrian detection support", 
+        "Privacy-preserving face blurring", "Crowd-flow and dwell-time analytics"
+      ]
+    },
+    {
+      category: "Libraries & Frameworks",
+      icon: "layers",
+      skills: [
+        "Pandas", "NumPy", "Scikit-learn", "TensorFlow", "Keras", "PyTorch", "XGBoost", "LightGBM", "CatBoost"
+      ]
+    },
+    {
+      category: "Visualization & Reporting",
+      icon: "pie-chart",
+      skills: [
+        "Power BI", "Tableau", "Matplotlib", "Seaborn", "Excel (Advanced Functions, Pivot Tables, Power Query)"
+      ]
+    },
+    {
+      category: "Cloud & Data Pipelines",
+      icon: "cloud",
+      skills: [
+        "AWS S3", "AWS EC2", "AWS Kinesis", "Kubernetes", "Data Pipeline Design", "API Integration"
+      ]
+    },
+    {
+      category: "Statistics",
+      icon: "bar-chart-2",
+      skills: [
+        "Descriptive & Inferential Statistics", "Hypothesis Testing", "Regression", "ANOVA", "A/B Testing / Experimentation"
+      ]
+    },
+    {
+      category: "Other & Methodologies",
+      icon: "check-circle-2",
+      skills: [
+        "Data Cleaning", "Data Preprocessing", "Data Transformation", "Data Storytelling", "Agile Methodology"
       ]
     }
   ],
