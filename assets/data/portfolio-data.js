@@ -268,7 +268,7 @@ const PORTFOLIO_DATA = {
     {
       name: "Machine Learning & Deep Learning",
       share: 30,
-      color: "#10B981",
+      color: "#0075ff",
       skills: [
         { name: "Scikit-learn", level: 95 },
         { name: "XGBoost / LightGBM / CatBoost", level: 92 },
@@ -284,7 +284,7 @@ const PORTFOLIO_DATA = {
     {
       name: "NLP & Generative AI",
       share: 25,
-      color: "#06B6D4",
+      color: "#01b574",
       skills: [
         { name: "Large Language Models (LLMs) & Fine-Tuning", level: 88 },
         { name: "Retrieval-Augmented Generation (RAG)", level: 86 },
@@ -299,7 +299,7 @@ const PORTFOLIO_DATA = {
     {
       name: "Computer Vision & Real-Time Streams",
       share: 20,
-      color: "#8B5CF6",
+      color: "#7551ff",
       skills: [
         { name: "Real-Time Video Stream Processing", level: 90 },
         { name: "Deep Learning Object / Pedestrian Detection", level: 88 },
@@ -312,7 +312,7 @@ const PORTFOLIO_DATA = {
     {
       name: "Cloud, BI & Data Analytics",
       share: 25,
-      color: "#F59E0B",
+      color: "#ffb547",
       skills: [
         { name: "Microsoft Power BI (DAX, Power Query)", level: 94 },
         { name: "Python (Pandas, NumPy)", level: 98 },
