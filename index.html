@@ -105,6 +105,12 @@
           Account & Connect
         </div>
         <nav class="space-y-1.5">
+          <button onclick="openCvModal()" class="w-full text-left nav-item">
+            <span class="nav-icon">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+            </span>
+            <span>View Full CV</span>
+          </button>
           <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink nav-item">
             <span class="nav-icon">
               <i data-lucide="file-down" class="w-4 h-4"></i>
@@ -181,6 +187,12 @@
             <span id="statusBadgeText" class="truncate max-w-[170px]">Open to Roles</span>
           </div>
 
+          <!-- View Full CV Button -->
+          <button onclick="openCvModal()" class="btn-vision-secondary text-xs py-2 px-3 flex items-center gap-1.5">
+            <i data-lucide="file-text" class="w-3.5 h-3.5 text-[#38bdf8]"></i>
+            <span class="hidden sm:inline">View CV</span>
+          </button>
+
           <!-- Download CV Button -->
           <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-vision-primary text-xs py-2 px-3.5">
             <i data-lucide="download" class="w-3.5 h-3.5"></i>
@@ -222,7 +234,7 @@
                   Sayana Chand K
                 </h3>
                 <p id="heroSummary" class="text-xs md:text-sm text-[#cbd5e1] leading-relaxed line-clamp-3">
-                  Data Scientist with proven expertise in predictive modeling, statistical analysis, and machine learning techniques at Cognizant. Specializing in Deep Learning, NLP, Generative AI, Computer Vision, and Automated MLOps.
+                  Data Scientist with 2+ years of professional experience in predictive modeling, statistical analysis and machine learning, spanning IT services, banking and healthcare use cases. Proficient in Python, SQL and Power BI, with hands-on work in deep learning, NLP, transformer-based models, Generative AI and computer vision. Skilled in exploratory data analysis, feature engineering, model evaluation and pipeline automation, with exposure to AWS and Kubernetes-based real-time data architectures. Focused on converting complex, high-volume datasets into measurable, business-relevant insights.
                 </p>
                 <div class="pt-2 flex flex-wrap items-center gap-3">
                   <a href="#projects" class="text-xs font-bold text-[#0075ff] hover:text-[#38bdf8] flex items-center gap-1.5 transition-colors">
@@ -230,8 +242,14 @@
                     <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                   </a>
                   <span class="text-slate-600">•</span>
-                  <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink text-xs font-semibold text-slate-300 hover:text-white transition-colors">
-                    Download CV
+                  <button onclick="openCvModal()" class="text-xs font-semibold text-[#38bdf8] hover:text-white transition-colors flex items-center gap-1">
+                    <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                    <span>View CV</span>
+                  </button>
+                  <span class="text-slate-600">•</span>
+                  <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink text-xs font-semibold text-slate-300 hover:text-white transition-colors flex items-center gap-1">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    <span>Download CV</span>
                   </a>
                 </div>
               </div>
@@ -540,16 +558,33 @@
       </section>
 
       <!-- Section: Skills & Competencies Matrix -->
-      <section id="skills" class="space-y-4">
+      <section id="skills" class="space-y-6">
         <div class="flex items-center justify-between">
           <div>
             <h3 class="text-lg font-bold text-white">Technical Skills & Competency Matrix</h3>
-            <p class="text-xs text-[#a0aec0]">Proficiency breakdown across AI, Deep Learning, MLOps and Data Engineering</p>
+            <p class="text-xs text-[#a0aec0]">Proficiency breakdown across AI, Deep Learning, MLOps, Computer Vision and Data Engineering</p>
           </div>
         </div>
 
+        <!-- 4 Core Capability Domain Focus Bars -->
         <div id="skillsMatrixContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <!-- Dynamically populated by app.js -->
+        </div>
+
+        <!-- 10 Grouped Technical Competencies directly from Attached CV -->
+        <div class="pt-3 space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                <i data-lucide="layers" class="w-4 h-4 text-[#0075ff]"></i>
+                <span>Complete Technical Skills Directory (As Per Latest CV)</span>
+              </h4>
+              <p class="text-xs text-[#a0aec0]">All 10 specialized functional domains categorized with verified toolsets</p>
+            </div>
+          </div>
+          <div id="technicalSkillsGroupedContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+            <!-- Dynamically populated by app.js -->
+          </div>
         </div>
       </section>
 
@@ -595,6 +630,10 @@
               <button onclick="copyToClipboard('sayanachandk@gmail.com', 'Email copied to clipboard!')" class="btn-vision-secondary text-xs py-2 px-3">
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
                 <span>Copy Email</span>
+              </button>
+              <button onclick="openCvModal()" class="btn-vision-secondary text-xs py-2 px-3">
+                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                <span>View Full CV</span>
               </button>
               <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-vision-primary text-xs py-2 px-3.5">
                 <i data-lucide="download" class="w-3.5 h-3.5"></i>
@@ -742,8 +781,208 @@
     </div>
   </div>
 
+  <!-- Full Curriculum Vitae Modal (Matches Executive 2-Page CV attached) -->
+  <div id="cvModalBackdrop" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden" onclick="closeCvModal()"></div>
+  <div id="cvModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 hidden pointer-events-none">
+    <div class="vision-card-solid w-full max-w-4xl max-h-[92vh] overflow-y-auto pointer-events-auto border border-white/15 shadow-2xl relative p-6 sm:p-8 space-y-6 bg-[#0a0e2a] text-slate-100">
+      <!-- CV Modal Header & Actions -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-white/10">
+        <div>
+          <span class="text-[10px] font-mono uppercase tracking-widest text-[#0075ff] font-bold">Curriculum Vitae</span>
+          <h2 class="text-2xl font-extrabold text-white tracking-tight mt-0.5">SAYANA CHAND K</h2>
+          <p class="text-xs text-[#38bdf8] font-medium mt-0.5">Data Scientist | Machine Learning & Deep Learning | NLP & Generative AI | Computer Vision</p>
+          <p class="text-xs text-[#a0aec0] mt-1 flex flex-wrap items-center gap-3">
+            <span><i data-lucide="map-pin" class="w-3 h-3 inline mr-1 text-[#01b574]"></i>Bengaluru, India</span>
+            <span><i data-lucide="mail" class="w-3 h-3 inline mr-1 text-[#0075ff]"></i>sayanachandk@gmail.com</span>
+            <span><i data-lucide="linkedin" class="w-3 h-3 inline mr-1 text-[#7551ff]"></i>linkedin.com/in/sayana-chand-k-sck</span>
+          </p>
+        </div>
+        <div class="flex items-center gap-2 self-start sm:self-auto">
+          <a href="./assets/Sayana_Chand_K_Resume.pdf" download="Sayana_Chand_K_Resume.pdf" class="userResumeLink btn-vision-primary text-xs py-2 px-3.5">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>Download PDF</span>
+          </a>
+          <button onclick="window.print()" class="btn-vision-secondary text-xs py-2 px-3">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            <span>Print</span>
+          </button>
+          <button onclick="closeCvModal()" class="text-slate-400 hover:text-white p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Professional Summary -->
+      <div class="space-y-2">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-1 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#0075ff]"></span>
+          <span>Professional Summary</span>
+        </h4>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Data Scientist with 2+ years of professional experience in predictive modeling, statistical analysis and machine learning, spanning IT services, banking and healthcare use cases. Proficient in Python, SQL and Power BI, with hands-on work in deep learning, NLP, transformer-based models, Generative AI and computer vision. Skilled in exploratory data analysis, feature engineering, model evaluation and pipeline automation, with exposure to AWS and Kubernetes-based real-time data architectures. Focused on converting complex, high-volume datasets into measurable, business-relevant insights.
+        </p>
+      </div>
+
+      <!-- Technical Skills (All 10 Categories from CV) -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-1 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#01b574]"></span>
+          <span>Technical Skills</span>
+        </h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5">
+            <span class="font-bold text-white block mb-1">Programming & Databases:</span>
+            <span class="text-slate-300">Python, SQL, MongoDB</span>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5">
+            <span class="font-bold text-white block mb-1">Data Science & Machine Learning:</span>
+            <span class="text-slate-300">Machine Learning, Supervised Learning, Unsupervised Learning, Ensemble Methods, Feature Engineering, Feature Selection, Hyperparameter Tuning, Model Evaluation, Model Interpretability (SHAP, LIME), Predictive Modeling, Time Series Analysis</span>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5">
+            <span class="font-bold text-white block mb-1">Deep Learning:</span>
+            <span class="text-slate-300">Neural Networks, CNN, RNN, LSTM, GRU, Transformers, Attention Mechanisms</span>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5">
+            <span class="font-bold text-white block mb-1">NLP & Generative AI:</span>
+            <span class="text-slate-300">Tokenization, Lemmatization, Stemming, Named Entity Recognition (NER), Text Classification, Sentiment Analysis, Topic Modeling, Word Embeddings, BERT, Large Language Models (LLMs), Fine-Tuning, Prompt Engineering, Retrieval-Augmented Generation (RAG), Summarization, Generative AI</span>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5">
+            <span class="font-bold text-white block mb-1">Computer Vision:</span>
+            <span class="text-slate-300">Real-time video stream processing, deep learning-based object/pedestrian detection support, privacy-preserving face blurring, crowd-flow and dwell-time analytics</span>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5">
+            <span class="font-bold text-white block mb-1">Libraries & Frameworks:</span>
+            <span class="text-slate-300">Pandas, NumPy, Scikit-learn, TensorFlow, Keras, PyTorch, XGBoost, LightGBM, CatBoost</span>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5">
+            <span class="font-bold text-white block mb-1">Visualization & Reporting:</span>
+            <span class="text-slate-300">Power BI, Tableau, Matplotlib, Seaborn, Excel (Advanced Functions, Pivot Tables, Power Query)</span>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5">
+            <span class="font-bold text-white block mb-1">Cloud & Data Pipelines:</span>
+            <span class="text-slate-300">AWS S3, AWS EC2, AWS Kinesis, Kubernetes, Data Pipeline Design, API Integration</span>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5">
+            <span class="font-bold text-white block mb-1">Statistics:</span>
+            <span class="text-slate-300">Descriptive & Inferential Statistics, Hypothesis Testing, Regression, ANOVA, A/B Testing / Experimentation</span>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5">
+            <span class="font-bold text-white block mb-1">Other:</span>
+            <span class="text-slate-300">Data Cleaning, Data Preprocessing, Data Transformation, Data Storytelling, Agile Methodology</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Professional Experience -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-1 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#7551ff]"></span>
+          <span>Professional Experience</span>
+        </h4>
+        <div class="bg-[#0f1535] p-4 rounded-xl border border-white/5 space-y-2.5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <span class="font-bold text-white text-sm">Data Scientist — Cognizant Technology Solutions, Bengaluru, India</span>
+            <span class="font-mono text-xs text-[#0075ff]">Jul 2021 – Present</span>
+          </div>
+          <ul class="space-y-2 text-xs text-slate-300 list-disc list-inside">
+            <li>Collaborated with cross-functional teams to build and evaluate machine learning and deep learning models, improving prediction accuracy by 15%.</li>
+            <li>Performed data analysis on large-scale datasets to identify trends, build predictive models and generate actionable insights supporting client decision-making.</li>
+            <li>Developed automated machine learning pipelines using the Neuro AI platform, reducing manual effort and improving efficiency in model deployment workflows.</li>
+            <li>Assisted in building RESTful API microservices using ASP.NET to support integration between internal tools and existing data pipelines.</li>
+            <li>Supported cloud and on-premise server migration for a client environment, contributing to data-flow design documentation and migration risk assessment without data loss.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-1 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#ffb547]"></span>
+          <span>Projects</span>
+        </h4>
+        <div class="space-y-3 text-xs">
+          <!-- Project 1 -->
+          <div class="bg-[#0f1535] p-4 rounded-xl border border-white/5 space-y-2">
+            <div class="font-bold text-white text-sm">Real-Time AI Crowd Management & Computer Vision Analytics</div>
+            <div class="text-[11px] text-[#38bdf8] font-mono">Tech Stack: Python, Deep Learning, AWS S3, AWS Kinesis, Power BI, Kubernetes</div>
+            <ul class="space-y-1.5 text-slate-300 list-disc list-inside">
+              <li>Designed a real-time crowd management system processing live AI-powered camera streams across stadium entry points, exits and concession kiosks to support proactive security and operational decision-making.</li>
+              <li>Applied computer-vision and deep-learning techniques to detect individuals in video streams and classify pedestrian versus bicyclist traffic in real time.</li>
+              <li>Implemented privacy-preserving face processing using Gaussian/kernel blur on detected faces to protect individual identity while preserving crowd analytics.</li>
+              <li>Calculated time-window-based dwell analytics, measuring average dwell times at entrances, exits and concession kiosks across pre- and post-match operational windows (30, 15 and 5 minutes).</li>
+              <li>Built Power BI dashboards to visualize high-density bottlenecks and underutilized access points, enabling security personnel to dynamically reroute stadium traffic.</li>
+              <li>Leveraged AWS S3, AWS Kinesis and Kubernetes to support real-time ingestion and processing of streaming camera data.</li>
+            </ul>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="bg-[#0f1535] p-4 rounded-xl border border-white/5 space-y-2">
+            <div class="font-bold text-white text-sm">Medical Text Analysis for Disease Prediction</div>
+            <div class="text-[11px] text-[#38bdf8] font-mono">Tech Stack: Python (Pandas, NumPy), SQL, NLP, Transformers (BioBERT/ClinicalBERT), Generative AI</div>
+            <ul class="space-y-1.5 text-slate-300 list-disc list-inside">
+              <li>Collected and analyzed 50,000+ clinical notes and patient records using Python and SQL, producing clean, structured datasets for downstream modeling.</li>
+              <li>Performed NLP preprocessing on unstructured clinical text, including tokenization, lemmatization and named entity recognition (NER), to extract clinically relevant features.</li>
+              <li>Fine-tuned a transformer-based language model (BioBERT/ClinicalBERT) to classify patient records into disease categories, achieving approximately 92% accuracy.</li>
+              <li>Engineered text-based features from symptoms, diagnoses and treatment notes to support supervised classification models.</li>
+              <li>Applied generative AI techniques to summarize patient histories, producing concise summaries to support clinical decision-making context.</li>
+            </ul>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="bg-[#0f1535] p-4 rounded-xl border border-white/5 space-y-2">
+            <div class="font-bold text-white text-sm">Credit Card Fraud Detection</div>
+            <div class="text-[11px] text-[#38bdf8] font-mono">Tech Stack: Python, Pandas, Scikit-learn, SMOTE, Matplotlib, Seaborn</div>
+            <ul class="space-y-1.5 text-slate-300 list-disc list-inside">
+              <li>Conducted exploratory data analysis on 284,807 credit card transactions to identify features and patterns associated with fraudulent activity.</li>
+              <li>Engineered 10+ derived features to strengthen model inputs and improve anomaly detection.</li>
+              <li>Applied SMOTE to address severe class imbalance, improving model robustness for minority-class (fraud) detection.</li>
+              <li>Built and tuned a supervised fraud-detection model achieving approximately 98% accuracy and 87% recall in identifying fraudulent transactions.</li>
+              <li>Visualized transaction trends and anomalies across transaction types, amounts and time periods using Matplotlib and Seaborn.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education & Certifications -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-1">Education</h4>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5 space-y-1.5">
+            <div class="font-bold text-white">Bachelor of Engineering, Information Science and Engineering</div>
+            <div class="text-slate-400">BNM Institute of Technology, Bengaluru | Aug 2017 – Jul 2021</div>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5 space-y-1.5">
+            <div class="font-bold text-white">Pre-University College — Science Stream</div>
+            <div class="text-slate-400">MES Vidyasagar PU College, Bengaluru | Apr 2015 – Jul 2017</div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-1">Certifications</h4>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5 space-y-1">
+            <div class="font-bold text-white">• Advanced Data Science and Machine Learning</div>
+            <div class="text-[#a0aec0]">Learnbay</div>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5 space-y-1">
+            <div class="font-bold text-white">• Artificial Intelligence with Machine Learning and Deep Learning</div>
+            <div class="text-[#a0aec0]">Cognizant</div>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5 space-y-1">
+            <div class="font-bold text-white">• Complete Python Bootcamp</div>
+            <div class="text-[#a0aec0]">Udemy</div>
+          </div>
+          <div class="bg-[#0f1535] p-3 rounded-xl border border-white/5 space-y-1">
+            <div class="font-bold text-white">• Microsoft Power BI: Beginner to Pro</div>
+            <div class="text-[#a0aec0]">Udemy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="./assets/data/portfolio-data.js"></script>
+  <script src="./assets/js/resume-data.js"></script>
   <script src="./assets/js/charts.js"></script>
   <script src="./assets/js/app.js"></script>
 </body>
