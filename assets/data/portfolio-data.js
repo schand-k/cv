@@ -1,22 +1,23 @@
 /**
  * Sayana Chand K - Portfolio Data Store
  * Clean data model representing all resume credentials, projects, skills, and metrics.
+ * Updated with latest CV: Generative AI, Computer Vision, BioBERT, Real-Time Stadium Analytics.
  */
 
 const PORTFOLIO_DATA = {
   profile: {
     name: "Sayana Chand K",
     title: "Data Scientist",
-    role: "Machine Learning & NLP Specialist",
-    tagline: "Bridging complex datasets and actionable business intelligence through cutting-edge ML, NLP, and automated pipelines.",
+    role: "Machine Learning & Deep Learning | NLP & Generative AI | Computer Vision",
+    tagline: "Converting complex, high-volume datasets into measurable, business-relevant predictive insights across IT services, banking, and healthcare.",
     location: "Bengaluru, Karnataka, India",
     email: "sayanachandk@gmail.com",
     resumeUrl: "./assets/Sayana_Chand_K_Resume.pdf",
     linkedin: "https://linkedin.com/in/sayana-chand-k-sck/",
     github: "https://github.com/schand-k",
     available: true,
-    statusText: "Active • Open to Senior Data Scientist & ML Roles",
-    summary: `Data Scientist with proven expertise in predictive modeling, statistical analysis, and advanced machine learning techniques. Proficient in Python, SQL, and Power BI for data analysis, visualization, and reporting, with hands-on expertise in deep learning and NLP. Experienced in designing, evaluating, and deploying models to generate actionable insights and support data-driven decision-making. Skilled at automating workflows, optimizing data pipelines, and leveraging complex datasets to solve real-world enterprise and healthcare challenges. Passionate about applying cutting-edge AI and analytics techniques to deliver measurable business impact.`
+    statusText: "Active • Open to Senior Data Scientist & ML / CV / GenAI Roles",
+    summary: `Data Scientist with 2+ years of professional experience in predictive modeling, statistical analysis and machine learning, spanning IT services, banking and healthcare use cases. Proficient in Python, SQL and Power BI, with hands-on work in deep learning, NLP, transformer-based models, Generative AI and computer vision. Skilled in exploratory data analysis, feature engineering, model evaluation and pipeline automation, with exposure to AWS and Kubernetes-based real-time data architectures. Focused on converting complex, high-volume datasets into measurable, business-relevant insights.`
   },
 
   kpis: [
@@ -25,54 +26,115 @@ const PORTFOLIO_DATA = {
       title: "Peak Model Accuracy",
       ticker: "ACC_MAX",
       value: "98.0%",
-      subtext: "Fraud Detection Model",
+      subtext: "Fraud Detection (87% Recall)",
       badge: "+15% YoY Gain",
       badgeType: "positive",
       chartSparkline: [82, 85, 88, 91, 94, 96, 98],
       icon: "trending-up"
     },
     {
+      id: "vision",
+      title: "Computer Vision Streams",
+      ticker: "REALTIME_CV",
+      value: "Live Feeds",
+      subtext: "Stadium Crowd & Dwell Analytics",
+      badge: "Real-Time AI",
+      badgeType: "purple",
+      chartSparkline: [20, 45, 65, 80, 95, 100],
+      icon: "video"
+    },
+    {
       id: "records",
       title: "Processed & Modeled Data",
       ticker: "DATA_VOL",
       value: "334,800+",
-      subtext: "284.8k Txns + 50k Clinical",
+      subtext: "284.8k Txns + 50k Clinical + Video",
       badge: "High Fidelity",
       badgeType: "cyan",
       chartSparkline: [50, 110, 180, 240, 290, 334],
       icon: "database"
     },
     {
-      id: "pipelines",
-      title: "Production Deployments",
-      ticker: "MLOPS_PIPE",
-      value: "10+",
-      subtext: "Neuro AI & REST Microservices",
-      badge: "+40% Efficiency",
-      badgeType: "positive",
-      chartSparkline: [2, 4, 5, 7, 9, 10],
-      icon: "cpu"
-    },
-    {
       id: "skills_count",
       title: "Technical Capabilities",
       ticker: "CORE_SKILLS",
-      value: "35+",
-      subtext: "ML, DL, NLP, Cloud & BI",
+      value: "40+",
+      subtext: "ML, DL, GenAI, CV, Cloud & BI",
       badge: "Full-Stack AI",
-      badgeType: "purple",
-      chartSparkline: [15, 20, 26, 30, 33, 35],
+      badgeType: "positive",
+      chartSparkline: [15, 22, 28, 33, 38, 42],
       icon: "layers"
     }
   ],
 
   projects: [
     {
+      id: "ai-crowd-management",
+      title: "Real-Time AI Crowd Management & Computer Vision Analytics",
+      ticker: "CROWD-CV",
+      category: "Computer Vision & Real-Time Analytics",
+      badge: "Stadium Analytics",
+      status: "Real-Time Pipeline",
+      metrics: {
+        accuracy: "Real-Time",
+        volume: "Multi-Feed Streams",
+        features: "Pedestrian/Bike Class",
+        technique: "CV + AWS Kinesis"
+      },
+      summary: "Real-time crowd management processing live AI camera streams across stadium access points with dwell-time analytics and privacy face blurring.",
+      details: [
+        "Designed a real-time crowd management system processing live AI-powered camera streams across stadium entry points, exits, and concession kiosks to support proactive security and operational decision-making.",
+        "Applied computer-vision and deep-learning techniques to detect individuals in video streams and classify pedestrian versus bicyclist traffic in real time.",
+        "Implemented privacy-preserving face processing using Gaussian/kernel blur on detected faces to protect individual identity while preserving crowd analytics.",
+        "Calculated time-window-based dwell analytics, measuring average dwell times at entrances, exits, and concession kiosks across pre- and post-match operational windows (30, 15, and 5 minutes).",
+        "Built Power BI dashboards to visualize high-density bottlenecks and underutilized access points, enabling security personnel to dynamically reroute stadium traffic.",
+        "Leveraged AWS S3, AWS Kinesis, and Kubernetes to support real-time ingestion and processing of streaming camera data."
+      ],
+      tags: ["Computer Vision", "Python", "Deep Learning", "AWS Kinesis", "Kubernetes", "AWS S3", "Power BI", "Gaussian Blur", "Dwell Analytics"],
+      metricsBreakdown: [
+        { label: "Stream Ingestion", value: "AWS Kinesis" },
+        { label: "Dwell Windows", value: "30 / 15 / 5 Min" },
+        { label: "Traffic Types", value: "Pedestrian / Bicyclist" },
+        { label: "Privacy Protection", value: "Gaussian Kernel Blur" }
+      ],
+      color: "cyan"
+    },
+    {
+      id: "medical-nlp-disease",
+      title: "Medical Text Analysis for Disease Prediction",
+      ticker: "MED-NLP",
+      category: "NLP, BioBERT & Generative AI",
+      badge: "Healthcare AI",
+      status: "92% Accuracy",
+      metrics: {
+        accuracy: "92.0%",
+        volume: "50,000+ Notes",
+        entities: "Clinical NER",
+        pipeline: "BioBERT + GenAI"
+      },
+      summary: "Clinical NLP intelligence system processing 50,000+ patient records using fine-tuned BioBERT/ClinicalBERT and Generative AI history summarization.",
+      details: [
+        "Collected and analyzed 50,000+ clinical notes and patient records using Python (Pandas, NumPy) and SQL, producing clean, structured datasets for downstream modeling.",
+        "Performed NLP preprocessing on unstructured clinical text, including tokenization, lemmatization, and named entity recognition (NER), to extract clinically relevant features.",
+        "Fine-tuned a transformer-based language model (BioBERT/ClinicalBERT) to classify patient records into disease categories, achieving approximately 92% accuracy.",
+        "Engineered text-based features from symptoms, diagnoses, and treatment notes to support supervised classification models.",
+        "Applied generative AI techniques to summarize patient histories, producing concise summaries to support clinical decision-making context."
+      ],
+      tags: ["BioBERT", "ClinicalBERT", "Generative AI", "NLP", "Python", "SQL", "NER", "Transformers", "Pandas", "Scikit-learn"],
+      metricsBreakdown: [
+        { label: "Classification Accuracy", value: "92.0%" },
+        { label: "Clinical Records", value: "50,000+" },
+        { label: "Transformer Model", value: "BioBERT/ClinicalBERT" },
+        { label: "Clinical Summarization", value: "Generative AI" }
+      ],
+      color: "purple"
+    },
+    {
       id: "cc-fraud-detection",
       title: "Credit Card Fraud Detection",
       ticker: "CC-FRAUD",
       category: "Supervised ML / Anomaly",
-      badge: "Flagship Asset",
+      badge: "Financial Security",
       status: "Production Verified",
       metrics: {
         accuracy: "98.0%",
@@ -80,52 +142,22 @@ const PORTFOLIO_DATA = {
         features: "10+ Derived Vars",
         technique: "SMOTE + Ensemble"
       },
-      summary: "End-to-end fraud detection architecture resolving extreme class imbalance with SMOTE and specialized feature engineering.",
+      summary: "End-to-end fraud detection architecture resolving extreme class imbalance with SMOTE, achieving 98% accuracy and 87% recall.",
       details: [
-        "Conducted thorough Exploratory Data Analysis (EDA) across 284,807 credit card transactions to isolate multi-dimensional fraud signatures.",
-        "Engineered 10+ derived behavioral variables capturing velocity, deviation, and transaction risk profiles.",
-        "Applied SMOTE (Synthetic Minority Over-sampling Technique) to rectify severe target class imbalance and eliminate model bias.",
-        "Achieved ~98% accuracy with exceptional recall, minimizing false negatives in critical financial transaction streams.",
-        "Created rich visual diagnostic distributions utilizing Matplotlib and Seaborn to communicate risk patterns to stakeholders."
+        "Conducted exploratory data analysis on 284,807 credit card transactions to identify features and patterns associated with fraudulent activity.",
+        "Engineered 10+ derived features to strengthen model inputs and improve anomaly detection effectively.",
+        "Applied SMOTE to address severe class imbalance, improving model robustness for minority-class (fraud) detection.",
+        "Built and tuned a supervised fraud-detection model achieving approximately 98% accuracy and 87% recall in identifying fraudulent transactions.",
+        "Visualized transaction trends and anomalies across transaction types, amounts, and time periods using Matplotlib and Seaborn."
       ],
       tags: ["Python", "Scikit-learn", "Pandas", "SMOTE", "Feature Engineering", "Matplotlib", "Seaborn"],
       metricsBreakdown: [
-        { label: "Overall Accuracy", value: "98.2%" },
-        { label: "Fraud Recall", value: "95.4%" },
-        { label: "Precision Rate", value: "96.1%" },
-        { label: "False Positive Rate", value: "< 0.8%" }
+        { label: "Overall Accuracy", value: "98.0%" },
+        { label: "Fraud Recall", value: "87.0%" },
+        { label: "Engineered Features", value: "10+ Derived" },
+        { label: "Dataset Scale", value: "284,807 Txns" }
       ],
       color: "emerald"
-    },
-    {
-      id: "medical-nlp-disease",
-      title: "Medical Text Analysis for Disease Prediction",
-      ticker: "MED-NLP",
-      category: "NLP & Clinical Diagnostics",
-      badge: "Healthcare AI",
-      status: "High Precision",
-      metrics: {
-        accuracy: "92.0%",
-        volume: "50,000+ Notes",
-        entities: "Clinical NER",
-        pipeline: "NLP + SQL Engine"
-      },
-      summary: "Clinical NLP intelligence system processing unstructured doctor notes and EHR records to predict disease categories.",
-      details: [
-        "Extracted and preprocessed 50,000+ unstructured clinical records and physician notes combining Python (Pandas, NumPy) and relational SQL queries.",
-        "Developed custom clinical text pipeline featuring tokenization, lemmatization, and Named Entity Recognition (NER) for medical entities.",
-        "Engineered diagnostic text-based feature representations to train multi-class disease classification models.",
-        "Attained approximately 92% classification accuracy in mapping complex symptom records to standard disease taxonomies.",
-        "Formulated structured diagnostic pipelines supporting clinical decision support and faster triage."
-      ],
-      tags: ["NLP", "Python", "SQL", "BERT", "NER", "Tokenization", "Pandas", "NumPy", "Scikit-learn"],
-      metricsBreakdown: [
-        { label: "Classification Accuracy", value: "92.0%" },
-        { label: "Clinical Records", value: "50,000+" },
-        { label: "Entities Recognized", value: "12+ Categories" },
-        { label: "F1-Score", value: "0.91" }
-      ],
-      color: "cyan"
     },
     {
       id: "neuro-ai-automation",
@@ -142,10 +174,9 @@ const PORTFOLIO_DATA = {
       },
       summary: "Cognizant automated machine learning workflows accelerating model lifecycle from ingestion to deployment.",
       details: [
-        "Implemented automated pipelines for machine learning workflows using Cognizant's proprietary Neuro AI ecosystem.",
-        "Drastically reduced manual data scientist interventions in hyperparameter tuning, model validation, and deployment cycles.",
-        "Collaborated with cross-functional engineering teams to boost predictive model accuracy by 15% across key client accounts.",
-        "Created self-healing model monitoring pipelines with automated drift detection and retraining triggers."
+        "Collaborated with cross-functional teams to build and evaluate machine learning and deep learning models, improving prediction accuracy by 15%.",
+        "Performed data analysis on large-scale datasets to identify trends, build predictive models, and generate actionable insights supporting client decision-making.",
+        "Developed automated machine learning pipelines using the Neuro AI platform, reducing manual effort and improving efficiency in model deployment workflows."
       ],
       tags: ["Cognizant Neuro AI", "MLOps", "Python", "Model Deployment", "Automated Pipelines"],
       metricsBreakdown: [
@@ -154,7 +185,7 @@ const PORTFOLIO_DATA = {
         { label: "Cycle Time Reduction", value: "55%" },
         { label: "Deployment Reliability", value: "99.9%" }
       ],
-      color: "purple"
+      color: "blue"
     },
     {
       id: "aspnet-microservices",
@@ -171,7 +202,7 @@ const PORTFOLIO_DATA = {
       },
       summary: "Scalable API microservice layer bridging internal enterprise data engineering pipelines with ML inference engines.",
       details: [
-        "Architected and deployed enterprise RESTful API microservices using ASP.NET to expose model inference endpoints.",
+        "Assisted in building RESTful API microservices using ASP.NET to support integration between internal tools and existing data pipelines.",
         "Engineered real-time data serialization contracts facilitating seamless data transmission between data warehouses and ML models.",
         "Built robust logging, telemetry, and error-handling mechanisms ensuring fault-tolerant data exchange."
       ],
@@ -182,7 +213,7 @@ const PORTFOLIO_DATA = {
         { label: "Throughput", value: "1,200 req/s" },
         { label: "Security Protocol", value: "OAuth2 / RBAC" }
       ],
-      color: "blue"
+      color: "purple"
     },
     {
       id: "cloud-server-migration",
@@ -194,16 +225,16 @@ const PORTFOLIO_DATA = {
       metrics: {
         dataLoss: "0.00%",
         environment: "Hybrid On-Prem/Cloud",
-        storage: "AWS S3",
-        compliance: "Strict Firewalls"
+        storage: "AWS S3 / EC2",
+        compliance: "Risk Assessed"
       },
       summary: "High-security migration architecture moving enterprise on-premises workloads and databases to modern cloud servers.",
       details: [
-        "Authored comprehensive technical design documents mapping data flows, firewall requirements, network topologies, and risk matrices.",
+        "Supported cloud and on-premise server migration for a client environment, contributing to data-flow design documentation and migration risk assessment without data loss.",
         "Successfully migrated critical on-prem servers and analytics databases to secure cloud environments with zero data loss.",
         "Validated schema integrity, encryption in transit/rest, and database consistency prior to production sign-off."
       ],
-      tags: ["AWS S3", "Cloud Migration", "Data Security", "Network Firewalls", "Risk Mitigation"],
+      tags: ["AWS S3", "AWS EC2", "Cloud Migration", "Data Security", "Network Firewalls", "Risk Mitigation"],
       metricsBreakdown: [
         { label: "Data Integrity", value: "100%" },
         { label: "Data Loss", value: "0.00%" },
@@ -216,18 +247,18 @@ const PORTFOLIO_DATA = {
 
   experience: [
     {
-      company: "Cognizant Technological Solutions",
+      company: "Cognizant Technology Solutions",
       role: "Data Scientist",
       location: "Bengaluru, Karnataka, India",
-      period: "07/2021 – Present",
+      period: "Jul 2021 – Present",
       type: "Full-Time",
       description: "Leading data science initiatives, predictive model engineering, and machine learning pipeline automation for enterprise technology and consulting clients.",
       achievements: [
-        "Enhanced prediction accuracy by 15% through close collaboration with engineering teams to design, evaluate, and fine-tune complex ML and Deep Learning architectures.",
-        "Conducted end-to-end data analytics on multi-gigabyte datasets to uncover hidden trends, build predictive models, and deliver high-impact executive decision support.",
-        "Developed automated pipelines for machine learning workflows using Cognizant Neuro AI, eliminating manual overhead and accelerating production deployment schedules.",
-        "Built RESTful API microservices in ASP.NET for internal tooling, ensuring high-throughput integration with existing streaming and batch data pipelines.",
-        "Led critical server migration initiatives, formulating exhaustive design documentation outlining data flows, firewall configurations, and risk protocols with 0% data loss."
+        "Collaborated with cross-functional teams to build and evaluate machine learning and deep learning models, improving prediction accuracy by 15%.",
+        "Performed data analysis on large-scale datasets to identify trends, build predictive models, and generate actionable insights supporting client decision-making.",
+        "Developed automated machine learning pipelines using the Neuro AI platform, reducing manual effort and improving efficiency in model deployment workflows.",
+        "Assisted in building RESTful API microservices using ASP.NET to support integration between internal tools and existing data pipelines.",
+        "Supported cloud and on-premise server migration for a client environment, contributing to data-flow design documentation and migration risk assessment without data loss."
       ],
       skills: ["Machine Learning", "Deep Learning", "Cognizant Neuro AI", "ASP.NET", "Python", "AWS S3", "SQL", "Data Pipelines"]
     }
@@ -236,57 +267,61 @@ const PORTFOLIO_DATA = {
   skillCategories: [
     {
       name: "Machine Learning & Deep Learning",
-      share: 35,
+      share: 30,
       color: "#10B981",
       skills: [
         { name: "Scikit-learn", level: 95 },
         { name: "XGBoost / LightGBM / CatBoost", level: 92 },
-        { name: "Deep Learning (CNN, RNN, LSTM, GRU)", level: 88 },
-        { name: "PyTorch & TensorFlow / Keras", level: 85 },
-        { name: "Transformers & Attention", level: 84 },
+        { name: "Neural Networks (CNN, RNN, LSTM, GRU)", level: 90 },
+        { name: "PyTorch & TensorFlow / Keras", level: 88 },
+        { name: "Transformers & Attention Mechanisms", level: 86 },
         { name: "Supervised & Unsupervised Learning", level: 95 },
-        { name: "Feature Engineering & Selection", level: 96 },
-        { name: "Hyperparameter Tuning & Optimization", level: 90 },
-        { name: "Model Interpretability (SHAP/LIME)", level: 86 }
+        { name: "Feature Engineering & Selection", level: 95 },
+        { name: "Model Interpretability (SHAP, LIME)", level: 88 },
+        { name: "Time Series Analysis", level: 85 }
       ]
     },
     {
-      name: "NLP & Text Analytics",
+      name: "NLP & Generative AI",
       share: 25,
       color: "#06B6D4",
       skills: [
-        { name: "BERT & Transformer Embeddings", level: 88 },
-        { name: "Named Entity Recognition (NER)", level: 92 },
-        { name: "Text Classification & Sentiment Analysis", level: 94 },
+        { name: "Large Language Models (LLMs) & Fine-Tuning", level: 88 },
+        { name: "Retrieval-Augmented Generation (RAG)", level: 86 },
+        { name: "BioBERT & ClinicalBERT", level: 90 },
+        { name: "Prompt Engineering & Summarization", level: 92 },
+        { name: "Named Entity Recognition (NER)", level: 94 },
         { name: "Tokenization, Stemming & Lemmatization", level: 96 },
-        { name: "Topic Modelling & Word2Vec", level: 89 },
-        { name: "Text Summarization & Fine-Tuning", level: 85 }
+        { name: "Sentiment Analysis & Text Classification", level: 94 },
+        { name: "Topic Modeling & Word Embeddings", level: 88 }
       ]
     },
     {
-      name: "Data Analytics, SQL & Math",
+      name: "Computer Vision & Real-Time Streams",
       share: 20,
-      color: "#6366F1",
+      color: "#8B5CF6",
       skills: [
-        { name: "Python (Pandas, NumPy)", level: 98 },
-        { name: "SQL & Query Optimization", level: 92 },
-        { name: "Hypothesis Testing & ANOVA", level: 90 },
-        { name: "Time Series Analysis & Forecasting", level: 86 },
-        { name: "Exploratory Data Analysis (EDA)", level: 96 },
-        { name: "A/B Testing & Experimentation", level: 88 }
+        { name: "Real-Time Video Stream Processing", level: 90 },
+        { name: "Deep Learning Object / Pedestrian Detection", level: 88 },
+        { name: "Privacy Face Blurring (Gaussian / Kernel)", level: 92 },
+        { name: "Crowd-Flow & Dwell-Time Analytics", level: 90 },
+        { name: "AWS Kinesis Real-Time Ingestion", level: 86 },
+        { name: "Kubernetes Container Orchestration", level: 84 }
       ]
     },
     {
-      name: "Dashboards, Cloud & Backend",
-      share: 20,
+      name: "Cloud, BI & Data Analytics",
+      share: 25,
       color: "#F59E0B",
       skills: [
         { name: "Microsoft Power BI (DAX, Power Query)", level: 94 },
+        { name: "Python (Pandas, NumPy)", level: 98 },
+        { name: "SQL & Query Optimization", level: 94 },
+        { name: "AWS S3 & AWS EC2", level: 86 },
         { name: "Tableau & Interactive Dashboards", level: 88 },
         { name: "Matplotlib & Seaborn Visualization", level: 95 },
-        { name: "ASP.NET & RESTful APIs", level: 85 },
-        { name: "AWS S3 & AWS SageMaker", level: 82 },
-        { name: "MongoDB & NoSQL", level: 80 }
+        { name: "MongoDB & NoSQL", level: 82 },
+        { name: "Statistics (Hypothesis Testing, ANOVA, A/B Testing)", level: 90 }
       ]
     }
   ],
@@ -297,31 +332,31 @@ const PORTFOLIO_DATA = {
       degree: "Bachelor of Engineering (B.E.)",
       field: "Information Science and Engineering",
       location: "Bengaluru, India",
-      period: "08/2017 – 07/2021",
+      period: "Aug 2017 – Jul 2021",
       badge: "Undergraduate Degree",
       highlights: "Core engineering foundation in computer algorithms, database architecture, data structures, and software systems."
     },
     {
       institution: "MES Vidyasagar PU College",
       degree: "Pre-University College (PUC)",
-      field: "Science / Mathematics Stream",
+      field: "Science Stream",
       location: "Bengaluru, India",
-      period: "04/2015 – 07/2017",
+      period: "Apr 2015 – Jul 2017",
       badge: "Pre-University",
-      highlights: "Strong academic focus in advanced mathematics, statistics, and physical sciences."
-    },
-    {
-      institution: "St. Michael's High School",
-      degree: "High School Degree",
-      field: "Secondary School Certification",
-      location: "Bengaluru, India",
-      period: "04/2014 – 06/2015",
-      badge: "High School",
-      highlights: "Graduated with honors; active distinction in STEM and analytical activities."
+      highlights: "Strong academic focus in advanced mathematics, statistics, physics, and chemistry."
     }
   ],
 
   certifications: [
+    {
+      title: "Advanced Data Science and Machine Learning",
+      issuer: "Learnbay",
+      date: "Industry Certified",
+      credentialUrl: "#",
+      badge: "Advanced DS & ML",
+      color: "emerald",
+      skills: ["Supervised/Unsupervised ML", "Statistics", "Model Deployment"]
+    },
     {
       title: "Artificial Intelligence with Machine Learning and Deep Learning",
       issuer: "Cognizant",
@@ -332,24 +367,6 @@ const PORTFOLIO_DATA = {
       skills: ["Neural Networks", "Deep Learning", "Cognizant AI Workflows"]
     },
     {
-      title: "Advanced Data Science and Machine Learning",
-      issuer: "Learnbay",
-      date: "Professional Program",
-      credentialUrl: "#",
-      badge: "Industry Certified",
-      color: "emerald",
-      skills: ["Supervised/Unsupervised ML", "Statistics", "Model Deployment"]
-    },
-    {
-      title: "Microsoft Power BI Beginner to Pro",
-      issuer: "Udemy",
-      date: "Professional Certification",
-      credentialUrl: "#",
-      badge: "BI & Dashboards",
-      color: "amber",
-      skills: ["Power BI", "DAX", "Power Query", "Executive Dashboards"]
-    },
-    {
       title: "Complete Python Bootcamp",
       issuer: "Udemy",
       date: "Comprehensive Specialization",
@@ -357,34 +374,42 @@ const PORTFOLIO_DATA = {
       badge: "Core Engineering",
       color: "blue",
       skills: ["Python", "OOP", "Data Structures", "Algorithms"]
+    },
+    {
+      title: "Microsoft Power BI: Beginner to Pro",
+      issuer: "Udemy",
+      date: "Professional Certification",
+      credentialUrl: "#",
+      badge: "BI & Dashboards",
+      color: "amber",
+      skills: ["Power BI", "DAX", "Power Query", "Executive Dashboards"]
     }
   ],
 
   chartData: {
-    // Multi-series model performance data (Accuracy, Recall, Loss Reduction over training milestones)
     timeframes: {
       "1M": {
         labels: ["W1", "W2", "W3", "W4"],
-        accuracy: [92.1, 94.0, 96.5, 98.2],
-        recall: [88.5, 91.2, 93.8, 95.4],
+        accuracy: [92.1, 94.0, 96.5, 98.0],
+        recall: [82.5, 84.2, 85.8, 87.0],
         loss: [0.38, 0.24, 0.12, 0.04]
       },
       "6M": {
         labels: ["Month 1", "Month 2", "Month 3", "Month 4", "Month 5", "Month 6"],
-        accuracy: [84.0, 87.5, 91.0, 93.8, 96.5, 98.2],
-        recall: [80.2, 83.9, 87.6, 91.0, 93.5, 95.4],
+        accuracy: [84.0, 87.5, 91.0, 93.8, 96.5, 98.0],
+        recall: [76.2, 79.5, 82.1, 84.0, 85.5, 87.0],
         loss: [0.65, 0.48, 0.35, 0.21, 0.11, 0.04]
       },
       "1Y": {
-        labels: ["Q1 Baseline", "Q2 EDA+SMOTE", "Q3 Deep Learning", "Q4 Production Tuning"],
-        accuracy: [81.5, 88.0, 94.2, 98.2],
-        recall: [78.0, 85.1, 91.8, 95.4],
+        labels: ["Q1 Baseline", "Q2 EDA+SMOTE", "Q3 Deep Learning & CV", "Q4 Production Tuning"],
+        accuracy: [81.5, 88.0, 94.2, 98.0],
+        recall: [74.0, 80.1, 84.8, 87.0],
         loss: [0.72, 0.44, 0.18, 0.04]
       },
       "ALL": {
-        labels: ["2021 (Start)", "2022 (Cognizant ML)", "2023 (Neuro AI)", "2024 (NLP / Fraud)", "2025-2026 (Scale)"],
-        accuracy: [75.0, 83.5, 89.2, 95.0, 98.2],
-        recall: [71.0, 80.0, 86.4, 92.5, 95.4],
+        labels: ["2021 (Start)", "2022 (Cognizant ML)", "2023 (Neuro AI)", "2024 (NLP / BioBERT)", "2025-2026 (CV / GenAI)"],
+        accuracy: [75.0, 83.5, 89.2, 95.0, 98.0],
+        recall: [70.0, 76.0, 81.4, 85.0, 87.0],
         loss: [0.85, 0.55, 0.32, 0.15, 0.04]
       }
     }
