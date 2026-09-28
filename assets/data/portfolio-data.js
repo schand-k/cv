@@ -176,86 +176,6 @@ const PORTFOLIO_DATA = {
       details: [
         "Collaborated with cross-functional teams to build and evaluate machine learning and deep learning models, improving prediction accuracy by 15%.",
         "Performed data analysis on large-scale datasets to identify trends, build predictive models, and generate actionable insights supporting client decision-making.",
-        "Developed automated machine learning pipelines using the Neuro AI platform, reducing manual effort and improving efficiency in model deployment workflows."
-      ],
-      tags: ["Cognizant Neuro AI", "MLOps", "Python", "Model Deployment", "Automated Pipelines"],
-      metricsBreakdown: [
-        { label: "Efficiency Gain", value: "+40%" },
-        { label: "Accuracy Enhancement", value: "+15%" },
-        { label: "Cycle Time Reduction", value: "55%" },
-        { label: "Deployment Reliability", value: "99.9%" }
-      ],
-      color: "blue"
-    },
-    {
-      id: "aspnet-microservices",
-      title: "RESTful API Microservices for ML Pipelines",
-      ticker: "REST-API",
-      category: "Backend & Systems Integration",
-      badge: "Microservices",
-      status: "Active Production",
-      metrics: {
-        latency: "< 45ms",
-        protocol: "REST / JSON",
-        security: "Role-Based Auth",
-        integration: "Pipeline Hook"
-      },
-      summary: "Scalable API microservice layer bridging internal enterprise data engineering pipelines with ML inference engines.",
-      details: [
-        "Assisted in building RESTful API microservices using ASP.NET to support integration between internal tools and existing data pipelines.",
-        "Engineered real-time data serialization contracts facilitating seamless data transmission between data warehouses and ML models.",
-        "Built robust logging, telemetry, and error-handling mechanisms ensuring fault-tolerant data exchange."
-      ],
-      tags: ["ASP.NET", "C#", "REST APIs", "Microservices", "Data Pipelines", "SQL"],
-      metricsBreakdown: [
-        { label: "Inference Latency", value: "< 45ms" },
-        { label: "Uptime SLA", value: "99.95%" },
-        { label: "Throughput", value: "1,200 req/s" },
-        { label: "Security Protocol", value: "OAuth2 / RBAC" }
-      ],
-      color: "purple"
-    },
-    {
-      id: "cloud-server-migration",
-      title: "Zero-Loss Cloud & Server Migration",
-      ticker: "MIG-AWS",
-      category: "Cloud Infrastructure & Security",
-      badge: "Infrastructure",
-      status: "Completed",
-      metrics: {
-        dataLoss: "0.00%",
-        environment: "Hybrid On-Prem/Cloud",
-        storage: "AWS S3 / EC2",
-        compliance: "Risk Assessed"
-      },
-      summary: "High-security migration architecture moving enterprise on-premises workloads and databases to modern cloud servers.",
-      details: [
-        "Supported cloud and on-premise server migration for a client environment, contributing to data-flow design documentation and migration risk assessment without data loss.",
-        "Successfully migrated critical on-prem servers and analytics databases to secure cloud environments with zero data loss.",
-        "Validated schema integrity, encryption in transit/rest, and database consistency prior to production sign-off."
-      ],
-      tags: ["AWS S3", "AWS EC2", "Cloud Migration", "Data Security", "Network Firewalls", "Risk Mitigation"],
-      metricsBreakdown: [
-        { label: "Data Integrity", value: "100%" },
-        { label: "Data Loss", value: "0.00%" },
-        { label: "Downtime", value: "Zero Unplanned" },
-        { label: "Compliance Score", value: "100%" }
-      ],
-      color: "amber"
-    }
-  ],
-
-  experience: [
-    {
-      company: "Cognizant Technology Solutions",
-      role: "Data Scientist",
-      location: "Bengaluru, Karnataka, India",
-      period: "Jul 2021 – Present",
-      type: "Full-Time",
-      description: "Leading data science initiatives, predictive model engineering, and machine learning pipeline automation for enterprise technology and consulting clients.",
-      achievements: [
-        "Collaborated with cross-functional teams to build and evaluate machine learning and deep learning models, improving prediction accuracy by 15%.",
-        "Performed data analysis on large-scale datasets to identify trends, build predictive models, and generate actionable insights supporting client decision-making.",
         "Developed automated machine learning pipelines using the Neuro AI platform, reducing manual effort and improving efficiency in model deployment workflows.",
         "Assisted in building RESTful API microservices using ASP.NET to support integration between internal tools and existing data pipelines.",
         "Supported cloud and on-premise server migration for a client environment, contributing to data-flow design documentation and migration risk assessment without data loss."
@@ -268,7 +188,7 @@ const PORTFOLIO_DATA = {
     {
       name: "Machine Learning & Deep Learning",
       share: 30,
-      color: "#10B981",
+      color: "#0075ff",
       skills: [
         { name: "Scikit-learn", level: 95 },
         { name: "XGBoost / LightGBM / CatBoost", level: 92 },
@@ -284,7 +204,7 @@ const PORTFOLIO_DATA = {
     {
       name: "NLP & Generative AI",
       share: 25,
-      color: "#06B6D4",
+      color: "#01b574",
       skills: [
         { name: "Large Language Models (LLMs) & Fine-Tuning", level: 88 },
         { name: "Retrieval-Augmented Generation (RAG)", level: 86 },
@@ -299,7 +219,7 @@ const PORTFOLIO_DATA = {
     {
       name: "Computer Vision & Real-Time Streams",
       share: 20,
-      color: "#8B5CF6",
+      color: "#7551ff",
       skills: [
         { name: "Real-Time Video Stream Processing", level: 90 },
         { name: "Deep Learning Object / Pedestrian Detection", level: 88 },
@@ -312,7 +232,7 @@ const PORTFOLIO_DATA = {
     {
       name: "Cloud, BI & Data Analytics",
       share: 25,
-      color: "#F59E0B",
+      color: "#ffb547",
       skills: [
         { name: "Microsoft Power BI (DAX, Power Query)", level: 94 },
         { name: "Python (Pandas, NumPy)", level: 98 },

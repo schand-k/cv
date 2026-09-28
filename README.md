@@ -1,121 +1,73 @@
-# Sayana Chand K - Data Science Portfolio Website
+# Sayana Chand K - Data Science & AI Portfolio Dashboard
 
-> An **Investment Portfolio Dashboard** styled personal website showcasing machine learning models, clinical NLP pipelines, and data science impact.
+> A futuristic **Vision UI Dashboard** personal portfolio website showcasing machine learning architectures, real-time computer vision streams, clinical NLP pipelines, and data science impact.
 > Designed with ❤️ by Sayana Chand.
 
-![Dashboard Preview](https://img.shields.io/badge/Design_Theme-Investment_Portfolio_Dashboard-10b981?style=for-the-badge)
-![GitHub Pages](https://img.shields.io/badge/Deployment-GitHub_Pages-06b6d4?style=for-the-badge&logo=github)
-![Tech](https://img.shields.io/badge/Tech-HTML5_|_Tailwind_CSS_|_Chart.js-8b5cf6?style=for-the-badge)
+[![Live Demo](https://img.shields.io/badge/Live_Site-schand--k.github.io%2Fcv-0075ff?style=for-the-badge&logo=githubpages&logoColor=white)](https://schand-k.github.io/cv/)
+[![Design Theme](https://img.shields.io/badge/Design_Theme-Vision_UI_Dashboard-7551ff?style=for-the-badge)](https://schand-k.github.io/cv/)
+[![Tech Stack](https://img.shields.io/badge/Tech-HTML5_|_Tailwind_CSS_|_Chart.js-01b574?style=for-the-badge)](https://schand-k.github.io/cv/)
 
 ---
 
 ## 🌟 Key Highlights & Design Features
 
-- **Fintech / Investment Dashboard Aesthetic**:
-  - Deep obsidian dark theme (`#07090e`), subtle glassmorphism (`backdrop-filter: blur(16px)`), neon emerald gains (`#10b981`), electric cyan (`#06b6d4`), and violet (`#8b5cf6`) accents.
-  - Dynamic KPI cards with live sparkline charts and percentage performance indicators (`+15% Model Gain`, `334,800+ Records Analyzed`, `98.0% Accuracy`).
-- **Interactive Multi-Series Performance Chart**:
-  - Interactive Chart.js graph displaying model training milestones, accuracy curves, recall rates, and validation loss reduction.
-  - Interactive timeframe switcher (`1M`, `6M`, `1Y`, `ALL`) and metric filters (`Accuracy`, `Loss`, `All`).
-- **Domain Asset Allocation Donut Chart**:
-  - Visual weighting of core competencies: Machine Learning & Deep Learning (30%), NLP & Generative AI (25%), Computer Vision & Real-Time Streams (20%), Cloud, BI & Data Analytics (25%).
-- **Portfolio Holdings (Flagship Projects Table & Modal)**:
-  - Financial asset-styled table with ticker symbols (`CROWD-CV`, `MED-NLP`, `CC-FRAUD`, `NEURO-AI`, `REST-API`, `MIG-AWS`).
-  - Interactive **"Inspect"** button that opens a high-detail modal displaying methodology, metrics breakdown (recall, precision, false positives), and architecture.
-- **Enterprise Experience & Credentials**:
-  - Cognizant Technological Solutions role summary, key deliverables, and technologies.
-  - Education (BNM Institute of Technology) & verified certifications (Cognizant AI, Learnbay, Udemy).
+- **Vision UI Dashboard Aesthetic**:
+  - Deep obsidian dark theme (`#060b26`), frosted glassmorphic cards (`backdrop-filter: blur(20px)`), ambient radial glows, and electric cyan/blue (`#0075ff`), emerald (`#01b574`), purple (`#7551ff`), and amber (`#ffb547`) accents.
+  - Signature SVG neural jellyfish hero graphic illustrating deep learning biological neural networks.
+  - Dynamic KPI cards with live sparklines and performance indicators (`98.0% Peak Accuracy`, `Real-Time CV Streams`, `334,800+ Records Analyzed`, `40+ Skills`).
+  - Circular Satisfaction Rate Gauge (95%) and Radial Trust & Safety Gauge (9.8 Score, 0.00% data loss).
+- **Interactive Multi-Series Performance & Inference Velocity**:
+  - Interactive Chart.js graph displaying model training iterations, accuracy curves, and recall rates across timeframes (`1M`, `6M`, `1Y`, `ALL`).
+  - Monthly inference throughput bar chart with Vision UI white pill bars and latency benchmarking (`< 45ms`).
+- **Production Projects & Deployments Table**:
+  - Detailed table on desktop and M-web responsive cards on mobile with category filter pills (`All`, `Supervised ML`, `Clinical NLP`, `Computer Vision & AI`, `MLOps / API`, `Cloud Infra`) and live search.
+  - **Flagship Projects**:
+    1. **CROWD-CV**: Real-Time AI Crowd Management & Computer Vision Analytics (AWS Kinesis, Kubernetes, Gaussian face blur, dwell analytics).
+    2. **MED-NLP**: Medical Text Analysis for Disease Prediction (50,000+ notes, BioBERT / ClinicalBERT, Generative AI history summarization).
+    3. **CC-FRAUD**: Credit Card Fraud Detection (284,807 transactions, SMOTE, 98% accuracy, 87% recall).
+    4. **NEURO-AI**: Enterprise ML Pipeline Automation (Cognizant Neuro AI, +15% accuracy, +40% efficiency).
+    5. **REST-API**: RESTful API Microservices (<45ms latency, ASP.NET Core).
+    6. **MIG-AWS**: Zero-Loss Cloud & Server Migration (0.00% data loss, AWS S3/EC2).
+  - Interactive **"Inspect"** button that opens a high-detail modal displaying architecture summary, diagnostic metrics, deliverables, and tooling.
+- **Competency Matrix & Professional Credentials**:
+  - 4 capability pillars: Machine Learning & Deep Learning (30%), NLP & Generative AI (25%), Computer Vision & Real-Time Streams (20%), Cloud, BI & Data Analytics (25%).
+  - Cognizant Technology Solutions track record, BNM Institute of Technology academic foundation, and verified professional certifications.
 - **Zero Build Step**:
-  - Built with clean vanilla HTML5, CSS, and JavaScript using Tailwind CSS CDN and Chart.js. No `npm install` or compilation required!
+  - Pure vanilla HTML5, CSS, and modern JavaScript. No bundlers or build steps required.
 
 ---
 
-## 🚀 How to Deploy to GitHub Pages
-
-### Method 1: Push via Git Command Line (Recommended)
-
-1. Open your terminal or PowerShell and navigate to this folder:
-   ```bash
-   cd C:\Users\sayan\.gemini\antigravity\scratch\sayana-portfolio
-   ```
-
-2. Initialize git and commit the files:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit: Investment Dashboard Portfolio for Sayana Chand K"
-   ```
-
-3. Create a new repository on [GitHub](https://github.com/new):
-   - Name it `sayana-portfolio` (or `sayanachandk.github.io` for a primary portfolio link).
-   - Keep it **Public**.
-
-4. Link the remote and push:
-   ```bash
-   git branch -M main
-   git remote add origin https://github.com/schand-k/cv.git
-   git push -u origin main
-   ```
-
-5. **Enable GitHub Pages**:
-   - Go to your repository on GitHub: `https://github.com/schand-k/cv`
-   - Click **Settings** > **Pages** (in the left sidebar).
-   - Under **Build and deployment** > **Source**, select **GitHub Actions** (the included `.github/workflows/deploy.yml` workflow will automatically deploy it) OR choose **Deploy from a branch** > `main` > `/ (root)` and click **Save**.
-   - Your live website URL will be:
-     ```
-     https://schand-k.github.io/cv/
-     ```
-
----
-
-### Method 2: Drag-and-Drop via GitHub Web Interface
-
-1. Create a new repository on [GitHub](https://github.com/new) named `sayana-portfolio`.
-2. Click **"uploading an existing file"**.
-3. Drag all files and folders from `C:\Users\sayan\.gemini\antigravity\scratch\sayana-portfolio` into GitHub.
-4. Commit changes.
-5. In **Settings > Pages**, choose `Deploy from branch`, select `main`, and click **Save**.
-
----
-
-## 🛠️ How to Update Your Information
-
-All your resume information, metrics, and projects are centralized in one single file:
-👉 `assets/data/portfolio-data.js`
-
-To add a new project, change a skill level, or update your phone/email:
-1. Open `assets/data/portfolio-data.js`.
-2. Edit the respective field (e.g. `PORTFOLIO_DATA.projects` or `PORTFOLIO_DATA.kpis`).
-3. Save the file. The entire dashboard will update automatically!
-
----
-
-## 📁 Project Structure
+## 📁 Repository Structure
 
 ```
-sayana-portfolio/
-├── index.html                   # Main dashboard layout
+cv/
+├── index.html                   # Main Vision UI dashboard layout
+├── README.md                    # Project documentation
+├── PROFILE_README.md            # GitHub Profile README showcase
+├── .nojekyll                    # Ensures GitHub Pages serves all assets
 ├── assets/
 │   ├── Sayana_Chand_K_Resume.pdf    # Downloadable Resume PDF
 │   ├── css/
-│   │   └── style.css            # Custom theme styles & glassmorphic styling
+│   │   └── style.css            # Vision UI styling & glassmorphism
 │   ├── js/
-│   │   ├── app.js               # Dashboard controller, search, project modal
-│   │   └── charts.js            # Chart.js initialization & interactive updates
+│   │   ├── app.js               # Application logic, filters & modal
+│   │   └── charts.js            # Chart.js visualizations & animated gauges
 │   └── data/
-│       └── portfolio-data.js    # Central data store for all portfolio items
-├── .github/
-│   └── workflows/
-│       └── deploy.yml           # Automated GitHub Pages CI/CD workflow
-└── README.md                    # Documentation & GitHub deployment guide
+│       └── portfolio-data.js    # Centralized portfolio data store
 ```
 
 ---
 
-## 👤 Contact
+## 🛠️ Customization & Updating Content
 
-- **Name**: Sayana Chand K
-- **Role**: Data Scientist
-- **Location**: Bengaluru, Karnataka, India
-- **Email**: sayanachandk@gmail.com
-- **LinkedIn**: [linkedin.com/in/sayana-chand-k-sck](https://linkedin.com/in/sayana-chand-k-sck/)
+All resume information, metrics, and projects are centralized in one file:
+👉 `assets/data/portfolio-data.js`
+
+Edit `PORTFOLIO_DATA` to add projects or update metrics—the entire dashboard updates dynamically.
+
+---
+
+## 📄 License & Attribution
+
+Designed with ❤️ by **Sayana Chand K**.
+Licensed under the [MIT License](LICENSE).
